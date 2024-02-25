@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import AuthContext from "../../Context/Authentication/AuthContext";
-import Logo from "../../Assets/Icons/Logo";
 import { Divider, Input, Button } from "@nextui-org/react";
 import { EyeIcon } from "../../Assets/Icons/EyeIcon";
 import { CutEyeIcon } from "../../Assets/Icons/CutEyeIcon";
+import logo from "../../Assets/logo.svg"
+import gif from "../../Assets/gif.gif"
 
 const Login = () => {
   const { login, loading } = useContext(AuthContext);
@@ -27,12 +28,12 @@ const Login = () => {
   return (
     <div className="h-screen w-full py-[2em] px-[2em] sm:px-0 flex flex-col gap-[3em]">
       <div className="flex flex-col place-items-center">
-        <img src="src/Assets/logo.svg" alt="logo" className="w-[28em]"/>
+        <img src={logo} alt="logo" className="w-[28em]"/>
         <span className="sm:text-[1.5em] text-[1em]">Secure Grids, Smarter Connections</span>
       </div>
       <div className="flex items-center">
         <img
-          src="src/Assets/gif.gif"
+          src={gif}
           alt="Power GIF"
           className="hidden lg:flex w-1/2"
         />
