@@ -61,7 +61,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[2rem] my-[1em]">
+    <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em]">
       <Card className="max-w-[400px] col-span-3">
         <CardHeader className="flex gap-3">
           <p className="text-md">Grid Status</p>
