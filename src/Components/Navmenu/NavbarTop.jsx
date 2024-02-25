@@ -55,9 +55,8 @@ const NavbarTop = () => {
       </NavbarContent>
       <NavbarMenu className="dark:bg-white bg-black flex flex-col gap-4">
         {NavItems.map((item, i) => (
-          <NavbarMenuItem>
+          <NavbarMenuItem key={i}>
             <NavLink
-              key={i}
               to={item.navigate}
               className={({ isActive }) =>
                 isActive
