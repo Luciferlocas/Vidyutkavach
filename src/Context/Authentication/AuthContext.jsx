@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (user, password) => {
     setloading(true);
     try {
-      const response = await axios.post(`/login`, {
+      const response = await axios.post(`https://home.anaskhan.site/api/login`, {
         user,
         password,
       });
