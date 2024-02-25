@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  --left: #3092e9;
+  --right: #04b7e8;
+  --white: #ffffff;
+  --border: #bbbbbb;
+  --fill: #eeeeee;
+  --fcolor: #474747;
+  font-size: 16px;
+}
+
+*::-webkit-scrollbar{
+  display: none;
+}
