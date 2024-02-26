@@ -62,54 +62,54 @@ const Dashboard = () => {
 
   return (
     <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em]">
-      <Card className="max-w-[400px] col-span-3">
+      <Card className="md:col-span-3 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">Grid Status</p>
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="text-[1.5em]">Connected to the main grid</p>
+          <p className="sm:text-[1.5em] text-[1.3em]">Connected to the main grid</p>
         </CardBody>
       </Card>
-      <Card className="col-span-4">
+      <Card className="md:col-span-4 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">Grid Status</p>
         </CardHeader>
         <Divider />
         <CardBody>
-          <div className="flex gap-4 justify-center">
+          <div className="sm:flex sm:flex-row gap-4 flex flex-col justify-center">
             <div className="flex flex-col">
-              <p className="text-[2em]">50 KW</p>
+              <p className="sm:text-[1.8em] text-[1em]">50 KW</p>
               <p className="text-small text-default-500">Production</p>
             </div>
-            <Divider orientation="vertical" />
+            <div className="sm:h-[4em] sm:w-[0.5px] h-[0.5px] w-[4em] bg-zinc-200 dark:bg-zinc-700"></div>
             <div className="flex flex-col">
-              <p className="text-[2em]">30 KW</p>
+              <p className="sm:text-[1.8em] text-[1em]">30 KW</p>
               <p className="text-small text-default-500">Consumption</p>
             </div>
           </div>
         </CardBody>
       </Card>
-      <Card className="max-w-[400px] col-span-2">
+      <Card className="md:col-span-2 col-span-5">
         <CardHeader className="flex gap-3">
           <p className="text-md">Battery SoC</p>
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="text-[3em] text-center">75%</p>
+          <p className="sm:text-[2.5em] text-[1.5em] text-center">75%</p>
         </CardBody>
       </Card>
-      <Card className="max-w-[400px] col-span-3">
+      <Card className="md:col-span-3 col-span-7">
         <CardHeader className="flex gap-3">
           <p className="text-md">Geospatial Status</p>
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="text-[3em] text-center">75%</p>
+          <p className="sm:text-[2.5em] text-[1.5em] text-center">75%</p>
         </CardBody>
       </Card>
 
-      <Card className="col-span-6">
+      <Card className="md:col-span-6 col-span-12 min-h-76">
         <CardHeader className="flex gap-3">
           <p className="text-md">Power Generation</p>
         </CardHeader>
@@ -118,7 +118,7 @@ const Dashboard = () => {
           <DashChart />
         </CardBody>
       </Card>
-      <Card className="col-span-6">
+      <Card className="md:col-span-6 col-span-12 min-h-76">
         <CardHeader className="flex gap-3">
           <p className="text-md">Load Consumption</p>
         </CardHeader>
@@ -128,23 +128,23 @@ const Dashboard = () => {
         </CardBody>
       </Card>
 
-      <div className="grid gap-4 col-span-4">
-        <Card className="max-w-[400px] col-span-2">
+      <div className="grid gap-4 md:col-span-4 col-span-8">
+        <Card className="col-span-2">
           <CardHeader className="flex gap-3">
             <p className="text-md">IDS</p>
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className="text-[3em] text-center">Active</p>
+            <p className="text-[1.8em] text-center">Active</p>
           </CardBody>
         </Card>
-        <Card className="max-w-[400px] col-span-2">
+        <Card className="col-span-2">
           <CardHeader className="flex gap-3">
             <p className="text-md">Firewall</p>
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className="text-[3em] text-center">Active</p>
+            <p className="text-[1.8em] text-center">Active</p>
           </CardBody>
         </Card>
         <Card className="col-span-4">
@@ -167,7 +167,7 @@ const Dashboard = () => {
           </CardBody>
         </Card>
       </div>
-      <Card className="col-span-1">
+      <Card className="md:col-span-2 col-span-4">
         <CardHeader className="flex gap-3">
           <p className="text-md">Grid Status</p>
         </CardHeader>
@@ -186,14 +186,13 @@ const Dashboard = () => {
           </div>
         </CardBody>
       </Card>
-
-      <Card className="col-span-7">
+      <Card className="md:col-span-6 col-span-12">
         <CardHeader className="flex gap-3">
           <p className="text-md">Alerts</p>
         </CardHeader>
         <Divider />
         <CardBody className="p-0 gap-2">
-          <div className="flex justify-around py-2 text-[1.2em]">
+          <div className="flex justify-around py-2 text-[1em]">
             <button
               className={activeTab === "Security" ? "text-blue-700 underline" : ""}
               onClick={() => setActiveTab("Security")}
@@ -219,49 +218,49 @@ const Dashboard = () => {
         </CardBody>
       </Card>
 
-      <Card className="col-span-3">
+      <Card className="md:col-span-3 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">CO2 Emissions</p>
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="text-[2em]">90 Kg/MWh</p>
+          <p className="sm:text-[2em] text-[1.5em]">90 Kg/MWh</p>
         </CardBody>
       </Card>
-      <Card className="col-span-3">
+      <Card className="md:col-span-3 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">Energy Efficiency</p>
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="text-[2em]">90 %</p>
+          <p className="sm:text-[2em] text-[1.5em]">90 %</p>
         </CardBody>
       </Card>
-      <Card className="col-span-6">
+      <Card className="md:col-span-6 col-span-12">
         <CardHeader className="flex gap-3">
           <p className="text-md">Active Component Status</p>
         </CardHeader>
         <Divider />
         <CardBody>
-          <div className="flex gap-8 justify-center">
+          <div className="flex gap-4 justify-center">
             <div className="flex flex-col">
-              <p className="text-small text-default-500">Nanogrids</p>
-              <p className="text-[1.5em]">3</p>
+              <p className="sm:text-[1em] text-[0.7em]">Nanogrids</p>
+              <p className="sm:text-[1.5em] text-[1.2em]">3</p>
             </div>
             <Divider orientation="vertical" />
             <div className="flex flex-col">
-              <p className="text-small text-default-500">Solar Plants</p>
-              <p className="text-[1.5em]">5</p>
+              <p className="sm:text-[1em] text-[0.7em]">Solar Plants</p>
+              <p className="sm:text-[1.5em] text-[1.2em]">5</p>
             </div>
             <Divider orientation="vertical" />
             <div className="flex flex-col">
-              <p className="text-small text-default-500">Wind Turbines</p>
-              <p className="text-[1.5em]">2</p>
+              <p className="sm:text-[1em] text-[0.7em]">Wind Turbines</p>
+              <p className="sm:text-[1.5em] text-[1.2em]">2</p>
             </div>
             <Divider orientation="vertical" />
             <div className="flex flex-col">
-              <p className="text-small text-default-500">Battery Storage</p>
-              <p className="text-[1.5em]">4</p>
+              <p className="sm:text-[1em] text-[0.7em]">Battery Storage</p>
+              <p className="sm:text-[1.5em] text-[1.2em]">4</p>
             </div>
           </div>
         </CardBody>
