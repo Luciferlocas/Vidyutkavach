@@ -6,7 +6,7 @@ import { EyeIcon } from "../../Assets/Icons/EyeIcon";
 import { CutEyeIcon } from "../../Assets/Icons/CutEyeIcon";
 import logo from "../../Assets/logo.svg";
 import gif from "../../Assets/gif.gif";
-import intro from "../../../public/intro.gif"
+import intro from "/intro.gif"
 
 const Login = () => {
   const { login, loading } = useContext(AuthContext);
