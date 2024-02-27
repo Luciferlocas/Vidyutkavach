@@ -4,12 +4,15 @@ import App from "./App";
 import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { AuthProvider } from "./Context/Authentication/AuthContext";
+import {PatchProvider } from "./Context/PatchManagement/PatchContext"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     <NextUIProvider>
       <AuthProvider>
+        <PatchProvider>
         <App />
+        </PatchProvider>
       </AuthProvider>
     </NextUIProvider>
   </>
