@@ -18,6 +18,9 @@ import ComponentMonitoring from "./Pages/ComponentMonitoring/ComponentMonitoring
 import HardwareManagement from "./Pages/HardwareManagement/HardwareManagement";
 import PatchManagement from "./Pages/PatchManagement/PatchManagement";
 import SecurityCenter from "./Pages/SecurityCenter/SecurityCenter";
+import NGiNX from "./Pages/SecurityCenter/NGiNX";
+import SecurityAlerts from "./Pages/SecurityCenter/SecurityAlerts";
+import HoneypotAlerts from "./Pages/SecurityCenter/HoneypotAlerts";
 
 const App = () => {
   const { theme } = useContext(AuthContext);
@@ -39,6 +42,15 @@ const App = () => {
             />
             <Route path="/patchmanagement" element={<PatchManagement />} />
             <Route path="/securitycenter" element={<SecurityCenter />} />
+            <Route path="/securitycenter/nginx" element={<NGiNX />} />
+            <Route
+              path="/securitycenter/securityalerts"
+              element={<SecurityAlerts />}
+            />
+            <Route
+              path="/securitycenter/honeypotalerts"
+              element={<HoneypotAlerts />}
+            />
           </Route>
         </Routes>
       </main>

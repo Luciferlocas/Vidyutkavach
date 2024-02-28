@@ -9,7 +9,7 @@ export const Patch = ({patchData}) => {
     return (
         <>
       <table className="w-full ">
-        <thead className="uppercase border-t border-b dark:border-zinc-700 border-zinc-200">
+        <thead className="uppercase border-b dark:border-zinc-700 border-zinc-200">
           <tr className="text-center">
             <th>Device Type</th>
             <th>Total Devices</th>
