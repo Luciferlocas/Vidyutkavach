@@ -37,8 +37,6 @@ const PatchChart = () => {
             {
                 data: [34, 28, 6],
                 backgroundColor: ["#29ABCA", "#2ECC71", "#F0F0F0"],
-                borderColor: `${theme ? "white" : "black"}`,
-                borderWidth: 1,
                 hoverBackgroundColor: ["#1E84A3", "#27AE60", "#E0E0E0"],
                 circumference: 180,
                 rotation: 270,
