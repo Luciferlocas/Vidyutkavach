@@ -6,6 +6,7 @@ import {
   Divider,
   Input,
   Button,
+  ScrollShadow,
 } from "@nextui-org/react";
 import PatchChart from "../../Components/Graphs/PatchChart";
 import PatchContext from "../../Context/PatchManagement/PatchContext";
@@ -23,7 +24,7 @@ const PatchManagement = () => {
   };
   return (
     <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em]">
-      <Card className="col-span-2">
+      <Card className="sm:col-span-2 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">Hardware Devices</p>
         </CardHeader>
@@ -32,7 +33,7 @@ const PatchManagement = () => {
           <p className="sm:text-[2.5em] text-[1.5em] text-center">34</p>
         </CardBody>
       </Card>
-      <Card className="col-span-2">
+      <Card className="sm:col-span-2 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">Patched Devices</p>
         </CardHeader>
@@ -41,7 +42,7 @@ const PatchManagement = () => {
           <p className="sm:text-[2.5em] text-[1.5em] text-center">28</p>
         </CardBody>
       </Card>
-      <Card className="col-span-2">
+      <Card className="sm:col-span-2 col-span-4">
         <CardHeader className="flex gap-3">
           <p className="text-md">Pending Patches</p>
         </CardHeader>
@@ -50,7 +51,7 @@ const PatchManagement = () => {
           <p className="sm:text-[2.5em] text-[1.5em] text-center">6</p>
         </CardBody>
       </Card>
-      <Card className="col-span-6 p-3">
+      <Card className="sm:col-span-6 col-span-8 p-3">
         <PatchChart />
       </Card>
       <Card className="col-span-12 min-h-40 pt-1">
@@ -74,10 +75,11 @@ const PatchManagement = () => {
         />
       </Card>
 
-      <Card className="col-span-6 min-h-48">
+      <Card className="sm:col-span-6 min-h-48 col-span-12 ">
         <CardHeader className="flex gap-4">
           <p className=" text-lg ">Patch Update Log</p>
         </CardHeader>
+        <ScrollShadow>
         <UpdateTable
           updateData={[
             {
@@ -94,11 +96,13 @@ const PatchManagement = () => {
             },
           ]}
         />
+        </ScrollShadow>
       </Card>
-      <Card className="col-span-6 min-h-48">
+      <Card className="sm:col-span-6 min-h-48 col-span-12">
         <CardHeader className="flex gap-4">
           <p className=" text-lg "> Pending Patch Updations</p>
         </CardHeader>
+        <ScrollShadow>
         <PendingTable
           pendingData={[
             {
@@ -115,15 +119,17 @@ const PatchManagement = () => {
             },
           ]}
         />
+        </ScrollShadow>
       </Card>
 
-      <Card className="col-span-12 py-1">
-        <CardHeader className="flex gap-3 text-lg">
+      <Card className="col-span-12">
+        <CardHeader className="flex text-lg">
           <p className="text-md">Add New Patch</p>
         </CardHeader>
         <Divider />
+        
         <CardBody className="col-span-12 gap-10">
-          <div className="flex flex-row justify-evenly ">
+          <div className="flex mt-8 justify-evenly ">
             <Input
               name="company"
               // onChange={handleInput}
@@ -154,6 +160,7 @@ const PatchManagement = () => {
               placeholder="New Patch Version"
             ></Input>
           </div>
+          
           <Button
             className=" font-medium text-md self-center mt-2"
             // onClick={savePatch}
@@ -168,6 +175,7 @@ const PatchManagement = () => {
         <CardHeader className="flex gap-4">
           <p className=" text-lg ">Patch Alerts</p>
         </CardHeader>
+        <ScrollShadow>
         <PatchAlert
           alertData={[
             {
@@ -184,6 +192,7 @@ const PatchManagement = () => {
             },
           ]}
         />
+        </ScrollShadow>
       </Card>
     </div>
   );

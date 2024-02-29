@@ -40,10 +40,10 @@ export const UpdateTable = ({updateData}) => {
         <>
       <table className="w-full ">
         <thead className="uppercase border-t border-b dark:border-zinc-700 border-zinc-200">
-          <tr className="text-center">
-            <th>Updation Time</th>
-            <th>Hardware Name</th>
-            <th>Patch Version</th>
+          <tr className="text-center sm:text-md text-sm">
+            <th className='px-2'>Updation Time</th>
+            <th className='px-2'>Hardware Name</th>
+            <th className='px-2'>Patch Version</th>
           </tr>
         </thead>
         <tbody>
@@ -68,10 +68,10 @@ export const PendingTable = ({pendingData}) => {
         <>
       <table className="w-full ">
         <thead className="uppercase border-t border-b dark:border-zinc-700 border-zinc-200">
-          <tr className="text-center">
-            <th>Hardware Name</th>
-            <th>Current Version</th>
-            <th>Latest Version</th>
+          <tr className="text-center sm:text-md text-sm">
+            <th className='px-2'>Hardware Name</th>
+            <th className='px-2'>Current Version</th>
+            <th className='px-2'>Latest Version</th>
           </tr>
         </thead>
         <tbody>
@@ -96,21 +96,21 @@ export const PatchAlert = ({alertData}) => {
       
     <table className="w-full ">
       <thead className="uppercase border-t border-b dark:border-zinc-700 border-zinc-200">
-        <tr className="text-center">
-        <th>Hardware ID</th>
-          <th>Hardware Name</th>
-          <th>Patch Version</th>
-          <th>Release Date</th>
-          <th>Update Status</th>
+        <tr className="text-center sm:text-md text-sm">
+        <th className='px-2'>Hardware ID</th>
+          <th className='px-2'>Hardware Name</th>
+          <th className='px-2'>Patch Version</th>
+          <th className='px-2'>Release Date</th>
+          <th className='px-2'>Update Status</th>
         </tr>
       </thead>
       <tbody>
         {alertData.map((patch) => (
-          <tr key={patch.id} className=' h-8'>
-              <td className="text-center">{patch.id}</td>
-              <td className="text-center">{patch.name}</td>
-              <td className="text-center">{patch.version}</td>
-              <td className="text-center">{patch.date}</td>
+          <tr key={patch.id} className=' max-h-8'>
+              <td className="text-center py-2">{patch.id}</td>
+              <td className="text-center py-2">{patch.name}</td>
+              <td className="text-center py-2">{patch.version}</td>
+              <td className="text-center py-2">{patch.date}</td>
               <td className='flex justify-center'><Button className=' h-6 text-xs font-medium mt-2 '>Update</Button></td>
           </tr>
         ))}
