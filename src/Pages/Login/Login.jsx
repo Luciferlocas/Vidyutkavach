@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import AuthContext from "../../Context/Authentication/AuthContext";
 import { Divider, Input, Button } from "@nextui-org/react";
@@ -6,22 +6,12 @@ import { EyeIcon } from "../../Assets/Icons/EyeIcon";
 import { CutEyeIcon } from "../../Assets/Icons/CutEyeIcon";
 import logo from "../../Assets/logo.svg";
 import gif from "../../Assets/gif.gif";
-import intro from "/intro.gif"
 
 const Login = () => {
   const { login, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
-  const [displayLogin, setDisplayLogin] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDisplayLogin(true);
-      clearInterval(interval);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +26,7 @@ const Login = () => {
     }
   };
 
-  return displayLogin ? (
+  return (
     <div className="h-screen w-full py-[2em] px-[2em] sm:px-0 flex flex-col gap-[3em]">
       <div className="flex flex-col place-items-center">
         <img src={logo} alt="logo" className="w-[28em]" />
@@ -93,10 +83,6 @@ const Login = () => {
           </Button>
         </form>
       </div>
-    </div>
-  ) : (
-    <div className="w-screen h-screen">
-      <img src={intro} width={1600} alt="" />
     </div>
   );
 };
