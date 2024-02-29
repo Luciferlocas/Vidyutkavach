@@ -27,7 +27,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen w-full py-[2em] px-[2em] sm:px-0 flex flex-col gap-[3em]">
+    <div className="min-h-screen justify-center py-[2em] px-[2em] sm:px-0 flex flex-col gap-[3em]">
       <div className="flex flex-col place-items-center">
         <img src={logo} alt="logo" className="w-[28em]" />
         <span className="sm:text-[1.5em] text-[1em]">
