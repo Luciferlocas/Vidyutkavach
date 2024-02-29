@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import Grid from "../../Components/Flow/Grid";
 
 const GridMonitoring = () => {
   return (
-    <div className="grid place-content-center gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em] h-[calc(100vh-4.1em)] text-3xl">
-      We will surely bring you something exciting in the future!
+    <div className="lg:pl-[16.5rem] px-4 lg:pr-[1rem] h-screen">
+      <Grid />
     </div>
-  )
-}
+  );
+};
 
-export default GridMonitoring
+export default GridMonitoring;

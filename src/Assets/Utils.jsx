@@ -22,11 +22,11 @@ const NavItems = [
     icon: <ComponentMonitorIcon />,
     navigate: "/componentmonitoring",
   },
-  {
-    title: "Hardware Management",
-    icon: <HardwareIcon />,
-    navigate: "/hardwaremanagement",
-  },
+  // {
+  //   title: "Hardware Management",
+  //   icon: <HardwareIcon />,
+  //   navigate: "/hardwaremanagement",
+  // },
   {
     title: "Patch Management",
     icon: <PatchIcon />,
