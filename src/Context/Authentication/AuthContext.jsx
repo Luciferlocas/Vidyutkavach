@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Cookies from "js-cookie";
+import {url} from "../../Assets/Utils"
 
 const AuthContext = createContext();
 
@@ -15,20 +16,20 @@ export const AuthProvider = ({ children }) => {
     setTheme(!theme);
   }
 
-  Cookies.set("token", true);
+  // Cookies.set("token", true);
 
-  const login = async (user, password) => {
+  const login = async (empID, password) => {
     setloading(true);
     try {
-      const response = await axios.post(`/login`, {
-        user,
+      const response = await axios.post(`${url}/user/signin`, {
+        empID,
         password,
       });
       if (response.data.success) {
-        toast.success("Welcome Admin!");
-        setResponse(response);
-        Cookies.set("token", response.data.AccessToken, { secure: true });
-        setToken(response.data.AccessToken);
+        toast.success("Welcome");
+        // setResponse(response);
+        // Cookies.set("token", response.data.AccessToken, { secure: true });
+        // setToken(response.data.AccessToken);
       }
     } catch (error) {
       if (error.response && error.response.data) {
