@@ -1,41 +1,67 @@
-import React, { useCallback } from "react";
-import ReactFlow, { useNodesState, useEdgesState, addEdge } from "reactflow";
+import { useCallback, useState } from "react";
+import ReactFlow, {
+  addEdge,
+  applyEdgeChanges,
+  applyNodeChanges,
+} from "reactflow";
 import "reactflow/dist/style.css";
+import MainNode from "./MainNode";
+import Mininode from "./MiniNode";
+import SmallNode from "./SmallNode";
 
 const initialNodes = [
   {
-    id: "hidden-1",
-    type: "Utility Grid",
-    data: { label: "Utility gird" },
-    position: { x: 250, y: 5 },
-    style: {
-      background: "#fff",
-      fontSize: 12,
-      border: "1px solid black",
-      padding: 5,
-      borderRadius: 15,
-      height: 100,
-    },
+    id: "node-1",
+    type: "mainnode",
+    position: { x: 0, y: 0 },
+    data: { value: 123 },
   },
-  { id: "hidden-2", data: { label: "Node 2" }, position: { x: 100, y: 100 } },
-  { id: "hidden-3", data: { label: "Node 3" }, position: { x: 400, y: 100 } },
-  { id: "hidden-4", data: { label: "Node 4" }, position: { x: 400, y: 200 } },
+  {
+    id: "node-2",
+    type: "output",
+    targetPosition: "top",
+    position: { x: 0, y: 200 },
+    data: { label: "node 2" },
+  },
+  {
+    id: "node-3",
+    type: "output",
+    targetPosition: "top",
+    position: { x: 200, y: 200 },
+    data: { label: "node 3" },
+  },
 ];
 
 const initialEdges = [
-  { id: "hidden-e1-2", source: "hidden-1", target: "hidden-2" },
-  { id: "hidden-e1-3", source: "hidden-1", target: "hidden-3" },
-  { id: "hidden-e3-4", source: "hidden-3", target: "hidden-4" },
+  { id: "edge-1", source: "node-1", target: "node-2", sourceHandle: "a" },
+  { id: "edge-2", source: "node-1", target: "node-3", sourceHandle: "b" },
 ];
 
-const Grid = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+// we define the nodeTypes outside of the component to prevent re-renderings
+// you could also use useMemo inside the component
+const nodeTypes = {
+  mainnode: MainNode,
+  smallnode: SmallNode,
+  mininode: Mininode,
+};
 
-  const onConnect = useCallback(
-    (params) => setEdges((els) => addEdge(params, els)),
-    []
+function Grid() {
+  const [nodes, setNodes] = useState(initialNodes);
+  const [edges, setEdges] = useState(initialEdges);
+
+  const onNodesChange = useCallback(
+    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+    [setNodes]
   );
+  const onEdgesChange = useCallback(
+    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+    [setEdges]
+  );
+  const onConnect = useCallback(
+    (connection) => setEdges((eds) => addEdge(connection, eds)),
+    [setEdges]
+  );
+
   return (
     <ReactFlow
       nodes={nodes}
@@ -43,8 +69,10 @@ const Grid = () => {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
-    ></ReactFlow>
+      nodeTypes={nodeTypes}
+      fitView
+    />
   );
-};
+}
 
 export default Grid;
