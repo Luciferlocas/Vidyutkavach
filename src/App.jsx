@@ -11,7 +11,7 @@ import Login from "./Pages/Login/Login";
 import Verify from "./Pages/Login/Verify";
 import NavbarTop from "./Components/Navmenu/NavbarTop";
 import NavbarLeft from "./Components/Navmenu/NavbarLeft";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 import AuthContext from "./Context/Authentication/AuthContext";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import GridMonitoring from "./Pages/GridMonitoring/GridMonitoring";
@@ -39,7 +39,7 @@ const App = () => {
               path="/componentmonitoring"
               element={<ComponentMonitoring />}
             />
-             <Route
+            <Route
               path="/componentmonitoring/generationdetail"
               element={<Generation />}
             />
@@ -66,7 +66,7 @@ const App = () => {
 };
 
 const MainLayout = ({ children }) => {
-  const { token } = useContext(AuthContext);
+  const token = Cookies.get("token");
   const navigate = useNavigate();
   useEffect(() => {
     if (!token) {

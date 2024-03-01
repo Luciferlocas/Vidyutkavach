@@ -18,18 +18,18 @@ export const PatchProvider = ({ children }) => {
     version: "",
   });
 
-  const showPatch = async () => {
-      try {
-        const response = await axios.get(`${url}/dashboard/get_dashboard`
-        );
-        setPatchData(response.data);
-      } catch (error) {
-        toast.error(error.message);
-      }
-     }
-     useEffect(() => {
-      showPatch();
-    });
+  // const showPatch = async () => {
+  //     try {
+  //       const response = await axios.get(`${url}/dashboard/get_dashboard`
+  //       );
+  //       setPatchData(response.data);
+  //     } catch (error) {
+  //       toast.error(error.message);
+  //     }
+  //    }
+  //    useEffect(() => {
+  //     showPatch();
+  //   });
 
     const updatePatch = async () => {
       //   try {
