@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { url } from "../../Assets/Utils";
+import Cookies from "js-cookie";
 
 const AuthContext = createContext();
 
@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (response.data.success) {
+        setResponse(true);
         toast.success("OTP sent");
       }
     } catch (error) {
@@ -41,8 +42,9 @@ export const AuthProvider = ({ children }) => {
         otp,
       });
       if (response.data.success) {
-        toast.success("Welcome");
         Cookies.set("token", response.data.token, { secure: true });
+        setToken(response.data.token);
+        toast.success("Welcome");
       }
     } catch (error) {
       if (error.response && error.response.data) {

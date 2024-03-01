@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Card, CardHeader, CardBody, Divider } from "@nextui-org/react";
 import DashTable from "../../Components/Tables/DashTable";
 import DashChart from "../../Components/Graphs/DashChart";
-import DashboardContext from "../../Context/DashboardContext";
+import DashboardContext from "../../Context/Dashboard/DashboardContext";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Security");
