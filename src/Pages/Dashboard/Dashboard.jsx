@@ -1,53 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Card, CardHeader, CardBody, Divider } from "@nextui-org/react";
 import DashTable from "../../Components/Tables/DashTable";
 import DashChart from "../../Components/Graphs/DashChart";
+import DashboardContext from "../../Context/DashboardContext";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Security");
+  const { dashboardData } = useContext(DashboardContext);
+  const comp = dashboardData.active_components;
 
   const renderTable = () => {
     switch (activeTab) {
       case "Security":
         return (
           <DashTable
-            data={[
-              {
-                id: 1,
-                is_read: false,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "192.168.1.105",
-                description: "Detected attempt to perform SQL injection",
-              },
-              {
-                id: 2,
-                is_read: false,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "192.168.1.215",
-                description: "Suspicious script detected in input",
-              },
-              {
-                id: 3,
-                is_read: false,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "192.168.1.135",
-                description: "Multiple failed login attempts",
-              },
-              {
-                id: 4,
-                is_read: false,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "192.168.1.185",
-                description: "System configuration changed",
-              },
-              {
-                id: 5,
-                is_read: false,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "192.168.1.250",
-                description: "Detected attempt to spoof DNS responses",
-              },
-            ]}
+            data={dashboardData.security_alerts}
             header="Source IP"
           />
         );
@@ -68,7 +35,9 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="sm:text-[1.5em] text-[1.3em]">Connected to the main grid</p>
+          <p className="sm:text-[1.5em] text-[1.3em]">
+            Connected to the main grid
+          </p>
         </CardBody>
       </Card>
       <Card className="md:col-span-4 col-span-6">
@@ -135,7 +104,7 @@ const Dashboard = () => {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className="text-[1.8em] text-center">Active</p>
+            <p className="text-[1.8em] text-center capitalize">{dashboardData.ids}</p>
           </CardBody>
         </Card>
         <Card className="col-span-2">
@@ -144,7 +113,7 @@ const Dashboard = () => {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className="text-[1.8em] text-center">Active</p>
+            <p className="text-[1.8em] text-center capitalize">{dashboardData.firewall}</p>
           </CardBody>
         </Card>
         <Card className="col-span-4">
@@ -169,19 +138,19 @@ const Dashboard = () => {
       </div>
       <Card className="md:col-span-2 col-span-4">
         <CardHeader className="flex gap-3">
-          <p className="text-md">Grid Status</p>
+          <p className="text-md">Honeypot</p>
         </CardHeader>
         <Divider />
         <CardBody>
           <div className="flex flex-col gap-6 justify-center">
             <div className="flex flex-col">
               <p className="text-small text-default-500">Status</p>
-              <p className="text-[1.5em]">3 / 3</p>
+              <p className="text-[1.5em]">{dashboardData.honeypot.active} / {dashboardData.honeypot.total}</p>
             </div>
             <Divider className="w-[4em]" />
             <div className="flex flex-col">
               <p className="text-small text-default-500">Detection</p>
-              <p className="text-[1.5em]">⚠️ 5</p>
+              <p className="text-[1.5em]">⚠️ {dashboardData.detections}</p>
             </div>
           </div>
         </CardBody>
@@ -194,20 +163,26 @@ const Dashboard = () => {
         <CardBody className="p-0 gap-2">
           <div className="flex justify-around py-2 text-[1em]">
             <button
-              className={activeTab === "Security" ? "text-blue-700 underline" : ""}
+              className={
+                activeTab === "Security" ? "text-blue-700 underline" : ""
+              }
               onClick={() => setActiveTab("Security")}
             >
               Security
             </button>
             <button
-              className={activeTab === "System Health" ? "text-blue-700 underline" : ""}
+              className={
+                activeTab === "System Health" ? "text-blue-700 underline" : ""
+              }
               onClick={() => setActiveTab("System Health")}
             >
               System Health
             </button>
             <button
               className={
-                activeTab === "Honeypot Detection" ? "text-blue-700 underline" : ""
+                activeTab === "Honeypot Detection"
+                  ? "text-blue-700 underline"
+                  : ""
               }
               onClick={() => setActiveTab("Honeypot Detection")}
             >
@@ -224,7 +199,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="sm:text-[2em] text-[1.5em]">90 Kg/MWh</p>
+          <p className="sm:text-[2em] text-[1.5em]">{dashboardData.co2_emission.vslue} Kg/MWh</p>
         </CardBody>
       </Card>
       <Card className="md:col-span-3 col-span-6">
@@ -233,7 +208,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="sm:text-[2em] text-[1.5em]">90 %</p>
+          <p className="sm:text-[2em] text-[1.5em]">{dashboardData.energy_efficiency.value} %</p>
         </CardBody>
       </Card>
       <Card className="md:col-span-6 col-span-12">

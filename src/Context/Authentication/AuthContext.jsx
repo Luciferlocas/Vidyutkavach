@@ -60,6 +60,7 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
     setResponse(null);
   };
+  
   const toggle = () => {
     setTheme(!theme);
   };
