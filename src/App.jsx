@@ -8,6 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./Pages/Login/Login";
+import Verify from "./Pages/Login/Verify";
 import NavbarTop from "./Components/Navmenu/NavbarTop";
 import NavbarLeft from "./Components/Navmenu/NavbarLeft";
 // import Cookies from "js-cookie";
@@ -21,6 +22,7 @@ import SecurityCenter from "./Pages/SecurityCenter/SecurityCenter";
 import NGiNX from "./Pages/SecurityCenter/NGiNX";
 import SecurityAlerts from "./Pages/SecurityCenter/SecurityAlerts";
 import HoneypotAlerts from "./Pages/SecurityCenter/HoneypotAlerts";
+import Generation from "./Pages/ComponentMonitoring/Generation";
 
 const App = () => {
   const { theme } = useContext(AuthContext);
@@ -29,12 +31,17 @@ const App = () => {
       <main className={`${theme ? "dark" : ""} text-foreground bg-background`}>
         <Routes>
           <Route exact path="/" element={<Login />} />
+          <Route exact path="/verify" element={<Verify />} />
           <Route element={<MainLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/gridmonitoring" element={<GridMonitoring />} />
             <Route
               path="/componentmonitoring"
               element={<ComponentMonitoring />}
+            />
+             <Route
+              path="/componentmonitoring/generationdetail"
+              element={<Generation />}
             />
             <Route
               path="/hardwaremanagement"

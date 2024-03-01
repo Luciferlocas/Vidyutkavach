@@ -19,18 +19,17 @@ export const PatchProvider = ({ children }) => {
   });
 
   const showPatch = async () => {
-    //   try {
-    //     const response = await axios.get(`${url}/`, {
-    //       headers: { Authorization: `Bearer ${token}` },
-    //     });
-    //     setPatchData(response.data);
-    //   } catch (error) {
-    //     toast.error(error.message);
-    //   }
+      try {
+        const response = await axios.get(`${url}/dashboard/get_dashboard`
+        );
+        setPatchData(response.data);
+      } catch (error) {
+        toast.error(error.message);
+      }
      }
-    //  useEffect(() => {
-    //   if (token) showPatch();
-    // }, [token]);
+     useEffect(() => {
+      showPatch();
+    });
 
     const updatePatch = async () => {
       //   try {

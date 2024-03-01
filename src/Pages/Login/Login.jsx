@@ -7,6 +7,7 @@ import { CutEyeIcon } from "../../Assets/Icons/CutEyeIcon";
 import logo from "../../Assets/logo.svg";
 import gif from "../../Assets/gif.gif";
 
+
 const Login = () => {
   const { login, loading } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Login = () => {
 
     try {
       await login(empID, password);
-      navigate("/dashboard");
+      navigate("/verify");
     } catch (error) {
       toast.error("Internal servor error");
     }
