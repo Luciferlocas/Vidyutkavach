@@ -15,11 +15,11 @@ const Login = () => {
   const toggleVisibility = () => setIsVisible(!isVisible);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = e.target.username.value;
+    const empID = e.target.username.value;
     const password = e.target.password.value;
 
     try {
-      await login(user, password);
+      await login(empID, password);
       navigate("/dashboard");
     } catch (error) {
       toast.error("Internal servor error");
