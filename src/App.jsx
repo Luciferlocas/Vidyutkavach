@@ -8,6 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./Pages/Login/Login";
+import Verify from "./Pages/Login/Verify";
 import NavbarTop from "./Components/Navmenu/NavbarTop";
 import NavbarLeft from "./Components/Navmenu/NavbarLeft";
 // import Cookies from "js-cookie";
@@ -30,6 +31,7 @@ const App = () => {
       <main className={`${theme ? "dark" : ""} text-foreground bg-background`}>
         <Routes>
           <Route exact path="/" element={<Login />} />
+          <Route exact path="/verify" element={<Verify />} />
           <Route element={<MainLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/gridmonitoring" element={<GridMonitoring />} />
