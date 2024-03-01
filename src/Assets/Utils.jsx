@@ -6,6 +6,8 @@ import HardwareIcon from "../Assets/NavIcons/HardwareIcon";
 import PatchIcon from "../Assets/NavIcons/PatchIcon";
 import SecurityIcon from "../Assets/NavIcons/SecurityIcon";
 
+const url ="http://home.anaskhan.site:3453"
+
 const NavItems = [
   {
     title: "Dashboard",
@@ -22,11 +24,11 @@ const NavItems = [
     icon: <ComponentMonitorIcon />,
     navigate: "/componentmonitoring",
   },
-  {
-    title: "Hardware Management",
-    icon: <HardwareIcon />,
-    navigate: "/hardwaremanagement",
-  },
+  // {
+  //   title: "Hardware Management",
+  //   icon: <HardwareIcon />,
+  //   navigate: "/hardwaremanagement",
+  // },
   {
     title: "Patch Management",
     icon: <PatchIcon />,
@@ -39,4 +41,4 @@ const NavItems = [
   },
 ];
 
-export { NavItems };
+export { NavItems, url };

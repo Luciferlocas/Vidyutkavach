@@ -9,7 +9,6 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Button,
-  Link,
 } from "@nextui-org/react";
 import { NavLink } from "react-router-dom";
 import Dark from "../../Assets/Icons/Dark";
@@ -18,11 +17,12 @@ import Logo from "../../Assets/Icons/Logo";
 import { NavItems } from "../../Assets/Utils";
 
 const NavbarTop = () => {
-  const { toggle, theme } = useContext(AuthContext);
+  const { toggle, theme, logout } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Navbar
+      isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       classNames={{
         wrapper: "max-w-[1440px] px-2 dark:text-white text-black",
@@ -70,7 +70,7 @@ const NavbarTop = () => {
             </NavLink>
           </NavbarMenuItem>
         ))}
-        <Button variant="flat" color="danger" className=" max-w-64">
+        <Button variant="flat" color="danger" className="max-w-64" onClick={logout}>
           Log Out
         </Button>
       </NavbarMenu>
