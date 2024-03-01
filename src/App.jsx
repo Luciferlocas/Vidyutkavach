@@ -21,6 +21,7 @@ import SecurityCenter from "./Pages/SecurityCenter/SecurityCenter";
 import NGiNX from "./Pages/SecurityCenter/NGiNX";
 import SecurityAlerts from "./Pages/SecurityCenter/SecurityAlerts";
 import HoneypotAlerts from "./Pages/SecurityCenter/HoneypotAlerts";
+import Generation from "./Pages/ComponentMonitoring/Generation";
 
 const App = () => {
   const { theme } = useContext(AuthContext);
@@ -35,6 +36,10 @@ const App = () => {
             <Route
               path="/componentmonitoring"
               element={<ComponentMonitoring />}
+            />
+             <Route
+              path="/componentmonitoring/generationdetail"
+              element={<Generation />}
             />
             <Route
               path="/hardwaremanagement"
