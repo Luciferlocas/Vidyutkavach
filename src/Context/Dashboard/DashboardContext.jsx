@@ -11,6 +11,7 @@ const socket = io("http://home.anaskhan.site:3453");
 export const DashboardProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
   const [dashboardData, setdashboardData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -18,6 +19,7 @@ export const DashboardProvider = ({ children }) => {
   }, []);
 
   const dashboard = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(`${url}/dashboard/get_dashboard`, {
         headers: { Authorization: `${token}` },
@@ -28,6 +30,8 @@ export const DashboardProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -40,6 +44,7 @@ export const DashboardProvider = ({ children }) => {
       value={{
         dashboardData,
         data,
+        loading
       }}
     >
       {children}

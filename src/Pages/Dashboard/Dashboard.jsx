@@ -1,12 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Card, CardHeader, CardBody, Divider } from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Divider,
+  Spinner,
+} from "@nextui-org/react";
 import DashTable from "../../Components/Tables/DashTable";
 import DashChart from "../../Components/Graphs/DashChart";
 import DashboardContext from "../../Context/Dashboard/DashboardContext";
 
 const Dashboard = () => {
+  const { dashboardData, data, loading } = useContext(DashboardContext);
   const [activeTab, setActiveTab] = useState("Security");
-  const { dashboardData, data } = useContext(DashboardContext);
   const status = dashboardData.grid_status.data;
 
   const leftGraph = [];
@@ -17,7 +23,9 @@ const Dashboard = () => {
       ["solar plants", "wind turbines plants", "utility"].includes(item.name)
     ) {
       leftGraph.push(item);
-    } else if(["commercial", "residential", "industrial"].includes(item.name)) {
+    } else if (
+      ["commercial", "residential", "industrial"].includes(item.name)
+    ) {
       rightGraph.push(item);
     }
   });
@@ -37,7 +45,11 @@ const Dashboard = () => {
     }
   };
 
-  return (
+  return loading ? (
+    <div className="min-h-screen grid place-content-center">
+      <Spinner />
+    </div>
+  ) : (
     <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em]">
       <Card className="md:col-span-3 col-span-6">
         <CardHeader className="flex gap-3">
@@ -103,7 +115,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <DashChart data={leftGraph}/>
+          <DashChart data={leftGraph} />
         </CardBody>
       </Card>
       <Card className="md:col-span-6 col-span-12 min-h-76">
@@ -112,7 +124,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <DashChart data={rightGraph}/>
+          <DashChart data={rightGraph} />
         </CardBody>
       </Card>
 
