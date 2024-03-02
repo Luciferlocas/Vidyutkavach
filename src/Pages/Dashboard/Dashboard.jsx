@@ -9,6 +9,7 @@ import {
 import DashTable from "../../Components/Tables/DashTable";
 import DashChart from "../../Components/Graphs/DashChart";
 import DashboardContext from "../../Context/Dashboard/DashboardContext";
+import GeospaticalIcon from "../../Assets/Icons/GeospaticalIcon";
 
 const Dashboard = () => {
   const { dashboardData, data, loading } = useContext(DashboardContext);
@@ -50,7 +51,7 @@ const Dashboard = () => {
       <Spinner />
     </div>
   ) : (
-    <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em]">
+    <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] min-h-screen px-4 lg:pr-[1rem] my-[1em]">
       <Card className="md:col-span-3 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">Grid Status</p>
@@ -91,7 +92,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="sm:text-[2.5em] text-[1.5em] text-center">
+          <p className="sm:text-[2em] text-[1em] text-center">
             {Math.ceil(
               status.find((item) => item._id === "storage").totalValue
             )}{" "}
@@ -105,7 +106,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="sm:text-[2.5em] text-[1.5em] text-center">75%</p>
+          <p className="grid place-content-center"><GeospaticalIcon/></p>
         </CardBody>
       </Card>
 

@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { useContext } from "react";
+import DashboardContext from "../../Context/Dashboard/DashboardContext";
 
-const CompMonitorTable = ({generated}) => {
-  if (!generated || !generated.length) return <p className="text-center">No record found.</p>;
+const CompMonitorTable = () => {
+  const { component } = useContext(DashboardContext);
+
+  if (!component.length) return <p className="text-center">No record found.</p>;
+
   return (
     <>
-    <table className="w-full">
-      <thead className="uppercase border-t border-b dark:border-zinc-700 border-zinc-200">
-        <tr className="text-center h-12">
-          <th>Source</th>
-          <th>Energy Created</th>
-          <th>Active Component Sites</th>
-        </tr>
-      </thead>
-      <tbody>
-        {generated.map((data) => (
-          <tr key={data.id} className='h-12 text-center'>
-           <td>{data.type}</td>
-           <td>{data.energy}</td>
-           <td className=' max-w-[100px]'>{data.active}</td>
+      <table className="w-full">
+        <thead className="capitalize border-b-1 dark:border-zinc-700 border-zinc-300 text-center text-zinc-600">
+          <tr className="text-lg">
+            <th className="p-4">NAME</th>
+            <th className="p-4">TYPE</th>
+            <th className="p-4">STATUS</th>
+            <th className="p-4">VALUE</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </>
-  )
-}
-export default CompMonitorTable
+        </thead>
+        <tbody className="text-center text-sm">
+          {component.map((data) => (
+            <tr
+              key={data.componentID}
+              className="capitalize border-b-1 dark:border-zinc-700 border-zinc-300 text-lg"
+            >
+              <td className="p-4 max-w-24">{data.name}</td>
+              <td className="p-4 max-w-24">{data.type}</td>
+              <td className="p-4 max-w-24 truncate">{data.status}</td>
+              <td className="p-4 max-w-24 text-green-600">{data.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
+};
+export default CompMonitorTable;

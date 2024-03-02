@@ -13,10 +13,13 @@ export const DashboardProvider = ({ children }) => {
   const [dashboardData, setdashboardData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [component, setComponent] = useState([]);
 
   useEffect(() => {
-    socket.on("component_stream", (data) => console.log(data));
-  }, []);
+    socket.on("component_stream", (data) => {
+      setComponent(data);
+    });
+  }, [socket]);
 
   const dashboard = async () => {
     setLoading(true);
@@ -44,7 +47,8 @@ export const DashboardProvider = ({ children }) => {
       value={{
         dashboardData,
         data,
-        loading
+        loading,
+        component
       }}
     >
       {children}

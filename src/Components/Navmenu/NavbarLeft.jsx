@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollShadow } from "@nextui-org/react";
 import { NavLink } from "react-router-dom";
 import { NavItems } from "../../Assets/Utils";
+import SecurityIcon from "../../Assets/NavIcons/SecurityIcon";
 
 const NavbarLeft = () => {
   return (
@@ -27,6 +28,20 @@ const NavbarLeft = () => {
               </NavLink>
             </li>
           ))}
+          <li>
+            <NavLink
+              to="https://splunk.anaskhan.site"
+              target="blank"
+              className={({ isActive }) =>
+                isActive
+                  ? "dark:text-black text-white rounded-lg dark:bg-white bg-black flex items-center p-3"
+                  : "rounded-lg dark:hover:bg-zinc-800 hover:bg-zinc-200 dark:text-white text-black flex items-center p-3"
+              }
+            >
+              <SecurityIcon />
+              <span className="ms-3">Security Center</span>
+            </NavLink>
+          </li>
         </ul>
       </ScrollShadow>
     </aside>

@@ -7,7 +7,7 @@ import logo from "../../Assets/logo.svg";
 import gif from "../../Assets/gif.gif";
 
 const Verify = () => {
-  const { loading, verify, token } = useContext(AuthContext);
+  const { loading, verify } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -15,7 +15,7 @@ const Verify = () => {
     const otp = e.target.otp.value;
     try {
       await verify(otp);
-      if(token) navigate("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       toast.error(error.message);
     }

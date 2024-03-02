@@ -10,10 +10,10 @@ const SecurityCenter = () => {
     <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em]">
       <Card className="col-span-12">
         <CardHeader className="flex justify-end">
-          <p className="text-md flex items-center gap-2">
+          <div className="text-md flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div> Last 24
             hours
-          </p>
+          </div>
         </CardHeader>
         <Divider />
         <CardBody>

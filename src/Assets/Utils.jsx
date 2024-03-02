@@ -34,11 +34,11 @@ const NavItems = [
     icon: <PatchIcon />,
     navigate: "/patchmanagement",
   },
-  {
-    title: "Security Center",
-    icon: <SecurityIcon />,
-    navigate: "/securitycenter",
-  },
+  // {
+  //   title: "Security Center",
+  //   icon: <SecurityIcon />,
+  //   navigate: "http://splunk.anaskhan.site:8000",
+  // },
 ];
 
 export { NavItems, url };
