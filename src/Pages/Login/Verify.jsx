@@ -15,7 +15,7 @@ const Verify = () => {
     const otp = e.target.otp.value;
     try {
       await verify(otp);
-      navigate("/dashboard");
+      navigate("/gridmonitoring");
     } catch (error) {
       toast.error(error.message);
     }

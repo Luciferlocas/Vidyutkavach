@@ -21,12 +21,12 @@ const CompMonitorTable = () => {
           {component.map((data) => (
             <tr
               key={data.componentID}
-              className="capitalize border-b-1 dark:border-zinc-700 border-zinc-300 text-lg"
+              className="border-b-1 dark:border-zinc-700 border-zinc-300 text-lg"
             >
-              <td className="p-4 max-w-24">{data.name}</td>
-              <td className="p-4 max-w-24">{data.type}</td>
-              <td className="p-4 max-w-24 truncate">{data.status}</td>
-              <td className="p-4 max-w-24 text-green-600">{data.value}</td>
+              <td className="capitalize p-4 max-w-24">{data.name}</td>
+              <td className="capitalize p-4 max-w-24">{data.type}</td>
+              <td className="capitalize p-4 max-w-24 truncate">{data.status}</td>
+              <td className="p-4 max-w-24 text-green-600">{data.value} kW</td>
             </tr>
           ))}
         </tbody>

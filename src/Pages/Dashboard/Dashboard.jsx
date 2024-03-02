@@ -14,7 +14,7 @@ import GeospaticalIcon from "../../Assets/Icons/GeospaticalIcon";
 const Dashboard = () => {
   const { dashboardData, data, loading } = useContext(DashboardContext);
   const [activeTab, setActiveTab] = useState("Security");
-  const status = dashboardData.grid_status.data;
+  const status = dashboardData.grid_status.data || 0;
 
   const leftGraph = [];
   const rightGraph = [];
@@ -47,7 +47,7 @@ const Dashboard = () => {
   };
 
   return loading ? (
-    <div className="min-h-screen grid place-content-center">
+    <div className="min-h-screen lg:pl-[16.5rem] grid place-content-center">
       <Spinner />
     </div>
   ) : (
