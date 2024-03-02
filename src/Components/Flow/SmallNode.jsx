@@ -1,19 +1,13 @@
-import { useCallback } from "react";
-import { Handle, Position } from "reactflow";
+import { Handle } from "reactflow";
 import {
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  Divider,
-  Link,
-  Image,
 } from "@nextui-org/react";
 
 function SmallNode({ data, isConnectable }) {
   return (
     <div className="text-updater-node">
-      <Handle type="target" position={Position.Top} />
+      <Handle type="target" position={data.pr} />
       <Card className="max-w-[400px]">
         <CardBody>
           {data.icon}
@@ -21,7 +15,7 @@ function SmallNode({ data, isConnectable }) {
       </Card>
       <Handle
         type="source"
-        position={Position.Left}
+        position={data.p}
         id="b"
         isConnectable={isConnectable}
       />

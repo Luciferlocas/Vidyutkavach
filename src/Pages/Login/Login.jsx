@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import AuthContext from "../../Context/Authentication/AuthContext";
 import { Divider, Input, Button } from "@nextui-org/react";
@@ -7,25 +7,23 @@ import { CutEyeIcon } from "../../Assets/Icons/CutEyeIcon";
 import logo from "../../Assets/logo.svg";
 import gif from "../../Assets/gif.gif";
 
-
 const Login = () => {
-  const { login, loading } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { login, loading, res } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const toggleVisibility = () => setIsVisible(!isVisible);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const empID = e.target.username.value;
-    const password = e.target.password.value;
-
-    try {
-      await login(empID, password);
-      navigate("/verify");
-    } catch (error) {
-      toast.error("Internal servor error");
-    }
+    await login(username, password);
   };
+
+  useEffect(() => {
+    if (res) navigate("/verify");
+  }, [res]);
 
   return (
     <div className="min-h-screen justify-center py-[2em] px-[2em] sm:px-0 flex flex-col gap-[3em]">
@@ -49,6 +47,8 @@ const Login = () => {
               type="text"
               id="username"
               name="username"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
               isRequired
               placeholder="Enter your username"
               label="Username"
@@ -58,6 +58,8 @@ const Login = () => {
             <Input
               id="password"
               name="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               isRequired
               placeholder="Enter password"
               label="Password"

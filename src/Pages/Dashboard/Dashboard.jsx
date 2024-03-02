@@ -6,17 +6,27 @@ import DashboardContext from "../../Context/Dashboard/DashboardContext";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Security");
-  const { dashboardData } = useContext(DashboardContext);
-  const comp = dashboardData.active_components;
+  const { dashboardData, data } = useContext(DashboardContext);
+  const status = dashboardData.grid_status.data;
+
+  const leftGraph = [];
+  const rightGraph = [];
+
+  data.forEach((item) => {
+    if (
+      ["solar plants", "wind turbines plants", "utility"].includes(item.name)
+    ) {
+      leftGraph.push(item);
+    } else if(["commercial", "residential", "industrial"].includes(item.name)) {
+      rightGraph.push(item);
+    }
+  });
 
   const renderTable = () => {
     switch (activeTab) {
       case "Security":
         return (
-          <DashTable
-            data={dashboardData.security_alerts}
-            header="Source IP"
-          />
+          <DashTable data={dashboardData.security_alerts} header="Source IP" />
         );
       case "System Health":
         return <DashTable data={null} header="Hardware ID" />;
@@ -48,12 +58,16 @@ const Dashboard = () => {
         <CardBody>
           <div className="sm:flex sm:flex-row gap-4 flex flex-col justify-center">
             <div className="flex flex-col">
-              <p className="sm:text-[1.8em] text-[1em]">50 KW</p>
+              <p className="sm:text-[1.8em] text-[1em]">
+                {status.find((item) => item._id === "output").totalValue} KW
+              </p>
               <p className="text-small text-default-500">Production</p>
             </div>
             <div className="sm:h-[4em] sm:w-[0.5px] h-[0.5px] w-[4em] bg-zinc-200 dark:bg-zinc-700"></div>
             <div className="flex flex-col">
-              <p className="sm:text-[1.8em] text-[1em]">30 KW</p>
+              <p className="sm:text-[1.8em] text-[1em]">
+                {status.find((item) => item._id === "input").totalValue} KW
+              </p>
               <p className="text-small text-default-500">Consumption</p>
             </div>
           </div>
@@ -65,7 +79,12 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="sm:text-[2.5em] text-[1.5em] text-center">75%</p>
+          <p className="sm:text-[2.5em] text-[1.5em] text-center">
+            {Math.ceil(
+              status.find((item) => item._id === "storage").totalValue
+            )}{" "}
+            KW
+          </p>
         </CardBody>
       </Card>
       <Card className="md:col-span-3 col-span-7">
@@ -84,7 +103,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <DashChart />
+          <DashChart data={leftGraph}/>
         </CardBody>
       </Card>
       <Card className="md:col-span-6 col-span-12 min-h-76">
@@ -93,7 +112,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <DashChart />
+          <DashChart data={rightGraph}/>
         </CardBody>
       </Card>
 
@@ -104,7 +123,9 @@ const Dashboard = () => {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className="text-[1.8em] text-center capitalize">{dashboardData.ids}</p>
+            <p className="text-[1.8em] text-center capitalize">
+              {dashboardData.ids}
+            </p>
           </CardBody>
         </Card>
         <Card className="col-span-2">
@@ -113,7 +134,9 @@ const Dashboard = () => {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className="text-[1.8em] text-center capitalize">{dashboardData.firewall}</p>
+            <p className="text-[1.8em] text-center capitalize">
+              {dashboardData.firewall}
+            </p>
           </CardBody>
         </Card>
         <Card className="col-span-4">
@@ -145,12 +168,16 @@ const Dashboard = () => {
           <div className="flex flex-col gap-6 justify-center">
             <div className="flex flex-col">
               <p className="text-small text-default-500">Status</p>
-              <p className="text-[1.5em]">{dashboardData.honeypot.active} / {dashboardData.honeypot.total}</p>
+              <p className="text-[1.5em]">
+                {dashboardData.honeypot.active} / {dashboardData.honeypot.total}
+              </p>
             </div>
             <Divider className="w-[4em]" />
             <div className="flex flex-col">
               <p className="text-small text-default-500">Detection</p>
-              <p className="text-[1.5em]">⚠️ {dashboardData.detections}</p>
+              <p className="text-[1.5em]">
+                ⚠️ {dashboardData.honeypot.detections}
+              </p>
             </div>
           </div>
         </CardBody>
@@ -199,7 +226,9 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="sm:text-[2em] text-[1.5em]">{dashboardData.co2_emission.vslue} Kg/MWh</p>
+          <p className="sm:text-[2em] text-[1.5em]">
+            {dashboardData.co2_emission.vslue} Kg/MWh
+          </p>
         </CardBody>
       </Card>
       <Card className="md:col-span-3 col-span-6">
@@ -208,7 +237,9 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="sm:text-[2em] text-[1.5em]">{dashboardData.energy_efficiency.value} %</p>
+          <p className="sm:text-[2em] text-[1.5em]">
+            {dashboardData.energy_efficiency.value} %
+          </p>
         </CardBody>
       </Card>
       <Card className="md:col-span-6 col-span-12">

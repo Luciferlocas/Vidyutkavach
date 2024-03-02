@@ -1,23 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import AuthContext from "../../Context/Authentication/AuthContext";
 import { Divider, Input, Button } from "@nextui-org/react";
-import { EyeIcon } from "../../Assets/Icons/EyeIcon";
-import { CutEyeIcon } from "../../Assets/Icons/CutEyeIcon";
 import toast from "react-hot-toast";
 import logo from "../../Assets/logo.svg";
 import gif from "../../Assets/gif.gif";
 
 const Verify = () => {
-  const { loading, verify } = useContext(AuthContext);
+  const { loading, verify, token } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const empID = e.target.username.value;
     const otp = e.target.otp.value;
     try {
-      await verify(empID, otp);
-      navigate("/dashboard");
+      await verify(otp);
+      if(token) navigate("/dashboard");
     } catch (error) {
       toast.error(error.message);
     }
@@ -42,17 +40,6 @@ const Verify = () => {
             <Input
               className="sm:min-w-96 min-w-60"
               type="text"
-              id="username"
-              name="username"
-              isRequired
-              placeholder="Enter your username"
-              label="Username"
-              labelPlacement="outside"
-            />
-            <br />
-            <Input
-              className="sm:min-w-96 min-w-60"
-              type="text"
               id="otp"
               name="otp"
               isRequired
@@ -66,7 +53,6 @@ const Verify = () => {
             variant="flat"
             color="primary"
             type="submit"
-            onClick={verify}
           >
             Verify
           </Button>

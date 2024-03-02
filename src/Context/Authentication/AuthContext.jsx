@@ -9,10 +9,12 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(Cookies.get("token"));
   const [loading, setloading] = useState(false);
-  const [response, setResponse] = useState(null);
+  const [res, setRes] = useState(false);
   const [theme, setTheme] = useState(true);
+  const [user, setUser] = useState(null);
 
   const login = async (empID, password) => {
+    setUser({ empID, password });
     setloading(true);
     try {
       const response = await axios.post(`${url}/user/signin`, {
@@ -20,7 +22,7 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (response.data.success) {
-        setResponse(true);
+        setRes(true);
         toast.success("OTP sent");
       }
     } catch (error) {
@@ -34,12 +36,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const verify = async (empID, otp) => {
+  const verify = async (otp) => {
     setloading(true);
     try {
       const response = await axios.post(`${url}/user/verify_otp`, {
-        empID,
-        otp,
+        empID: user.empID,
+        otp: otp,
       });
       if (response.data.success) {
         Cookies.set("token", response.data.token, { secure: true });
@@ -60,16 +62,25 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     Cookies.remove("token");
     setToken(null);
-    setResponse(null);
+    setRes(false);
   };
-  
+
   const toggle = () => {
     setTheme(!theme);
   };
 
   return (
     <AuthContext.Provider
-      value={{ token, response, login, logout, loading, theme, toggle, verify }}
+      value={{
+        token,
+        res,
+        login,
+        logout,
+        loading,
+        theme,
+        toggle,
+        verify,
+      }}
     >
       {children}
       <Toaster position="bottom-right" />

@@ -1,35 +1,31 @@
-import React from 'react'
+import React from "react";
 
-import { Card, CardHeader, CardBody, Divider,  Button } from "@nextui-org/react";
-import CompMonitorTable from '../../Components/Tables/CompMonitorTable';
-import { useNavigate } from 'react-router';
+import { Card, CardHeader, CardBody, Divider, Button } from "@nextui-org/react";
+import CompMonitorTable from "../../Components/Tables/CompMonitorTable";
+import { useNavigate } from "react-router";
 const ComponentMonitoring = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate('generationdetail');
-  }
+    navigate("generationdetail");
+  };
   return (
     <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em] h-screen">
-      <Card className='col-span-12'>
+      <Card className="col-span-12">
         <CardHeader className="flex gap-3">
           <p className="text-md">Power Generation Components</p>
         </CardHeader>
         <CardBody>
-         <CompMonitorTable  generated={[
-            {
-              id: "1",
-              energy: "44 KW",
-              type: "Smart Meter",
-              active: "Solar plant A, Solar plant B, Solar plant C, Solar plant D",
-            },
-          ]}/>
-         <Button  className=' w-24 text-xs font-medium self-end '
-          onClick = {handleNavigate}
-         >More Details</Button>
+          <CompMonitorTable />
+          <Button
+            className=" w-24 text-xs font-medium self-end "
+            // onClick={handleNavigate}
+          >
+            More Details
+          </Button>
         </CardBody>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default ComponentMonitoring
+export default ComponentMonitoring;

@@ -10,15 +10,26 @@ import {
   NavbarMenuItem,
   Button,
 } from "@nextui-org/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Dark from "../../Assets/Icons/Dark";
 import Light from "../../Assets/Icons/Light";
+import toast from "react-hot-toast";
 import Logo from "../../Assets/Icons/Logo";
 import { NavItems } from "../../Assets/Utils";
 
 const NavbarTop = () => {
   const { toggle, theme, logout } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } finally {
+      toast.success("Logged out successfully");
+    }
+  };
 
   return (
     <Navbar
@@ -46,11 +57,9 @@ const NavbarTop = () => {
           </button>
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
-          <NavLink to="/">
-            <Button variant="flat" color="danger" className="font-bold">
-              Log Out
-            </Button>
-          </NavLink>
+          <Button variant="flat" color="danger" className="font-bold" onClick={handleLogout}>
+            Log Out
+          </Button>
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="dark:bg-white bg-black flex flex-col gap-4">
@@ -70,7 +79,12 @@ const NavbarTop = () => {
             </NavLink>
           </NavbarMenuItem>
         ))}
-        <Button variant="flat" color="danger" className="max-w-64" onClick={logout}>
+        <Button
+          variant="flat"
+          color="danger"
+          className="max-w-64"
+          onClick={handleLogout}
+        >
           Log Out
         </Button>
       </NavbarMenu>

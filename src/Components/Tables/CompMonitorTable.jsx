@@ -6,15 +6,15 @@ const CompMonitorTable = ({generated}) => {
     <>
     <table className="w-full">
       <thead className="uppercase border-t border-b dark:border-zinc-700 border-zinc-200">
-        <tr className="text-center">
-          <th>Source Type</th>
+        <tr className="text-center h-12">
+          <th>Source</th>
           <th>Energy Created</th>
           <th>Active Component Sites</th>
         </tr>
       </thead>
       <tbody>
         {generated.map((data) => (
-          <tr key={data.id} className='h-8 text-center'>
+          <tr key={data.id} className='h-12 text-center'>
            <td>{data.type}</td>
            <td>{data.energy}</td>
            <td className=' max-w-[100px]'>{data.active}</td>

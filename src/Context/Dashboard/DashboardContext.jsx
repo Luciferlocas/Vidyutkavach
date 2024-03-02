@@ -3,12 +3,19 @@ import axios from "axios";
 import { url } from "../../Assets/Utils";
 import toast from "react-hot-toast";
 import AuthContext from "../Authentication/AuthContext";
+import { io } from "socket.io-client";
 
 const DashboardContext = createContext();
+const socket = io("http://home.anaskhan.site:3453");
 
 export const DashboardProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
   const [dashboardData, setdashboardData] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    socket.on("component_stream", (data) => console.log(data));
+  }, []);
 
   const dashboard = async () => {
     try {
@@ -17,9 +24,10 @@ export const DashboardProvider = ({ children }) => {
       });
       if (res.data.success) {
         setdashboardData(res.data);
+        setData(res.data.weekly_data.data);
       }
-    } catch {
-      toast.error("Error occured while fetching");
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 
@@ -31,6 +39,7 @@ export const DashboardProvider = ({ children }) => {
     <DashboardContext.Provider
       value={{
         dashboardData,
+        data,
       }}
     >
       {children}
