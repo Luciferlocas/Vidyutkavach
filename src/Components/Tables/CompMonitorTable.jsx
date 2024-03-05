@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
-import DashboardContext from "../../Context/Dashboard/DashboardContext";
+import React from "react";
 
-const CompMonitorTable = () => {
-  const { component } = useContext(DashboardContext);
-
-  if (!component.length) return <p className="text-center">No record found.</p>;
+const CompMonitorTable = ({ data, prop, unit, color }) => {
+  if (!data.length) return <p className="text-center">No record found.</p>;
 
   return (
     <>
@@ -18,17 +15,24 @@ const CompMonitorTable = () => {
           </tr>
         </thead>
         <tbody className="text-center text-sm">
-          {component.map((data) => (
-            <tr
-              key={data.componentID}
-              className="border-b-1 dark:border-zinc-700 border-zinc-300 text-lg"
-            >
-              <td className="capitalize p-4 max-w-24">{data.name}</td>
-              <td className="capitalize p-4 max-w-24">{data.type}</td>
-              <td className="capitalize p-4 max-w-24 truncate">{data.status}</td>
-              <td className="p-4 max-w-24 text-green-600">{data.value} kW</td>
-            </tr>
-          ))}
+          {data.map(
+            (data) =>
+              data.type === prop && (
+                <tr
+                  key={data.componentID}
+                  className="border-b-1 dark:border-zinc-700 border-zinc-300 text-lg"
+                >
+                  <td className="capitalize p-4 max-w-24">{data.name}</td>
+                  <td className="capitalize p-4 max-w-24">{data.type}</td>
+                  <td className="capitalize p-4 max-w-24 truncate">
+                    {data.status}
+                  </td>
+                  <td className={`${(color === "g") ? "text-yellow-600" : "text-red-600"} p-4 max-w-24`}>
+                    {data.value} {unit} 
+                  </td>
+                </tr>
+              )
+          )}
         </tbody>
       </table>
     </>

@@ -11,13 +11,17 @@ import SmallNode from "./SmallNode";
 import SolarIcon from "../../Assets/Grid/SolarIcon";
 import WindIcon from "../../Assets/Grid/WindIcon";
 import HydroIcon from "../../Assets/Grid/HydroIcon";
+import ThermalIcon from "../../Assets/Grid/ThermalIcon"
+import BatteryIcon from "../../Assets/Grid/BatteryIcon";
+import UtilityGrid from "../../Assets/Grid/UtilityGrid";
+import PowerIcon from "../../Assets/Grid/PowerIcon";
 
 const initialNodes = [
   {
     id: "node-1",
     type: "mainnode",
     position: { x: 0, y: -100 },
-    data: { label: "Utility Grid", value: 100 },
+    data: { label: "Utility Grid", value: 100 , top: false, icon: <UtilityGrid/>},
   },
   {
     id: "1",
@@ -45,14 +49,20 @@ const initialNodes = [
     type: "smallnode",
     targetPosition: "top",
     position: { x: 200, y: 500 },
-    data: { icon: <HydroIcon />, p: "right", pr: "left" },
+    data: { icon: <BatteryIcon />, p: "right", pr: "left" },
   },
   {
     id: "5",
     type: "smallnode",
     targetPosition: "top",
     position: { x: -100, y: 700 },
-    data: { icon: <HydroIcon />, p: "left", pr: "right" },
+    data: { icon: <ThermalIcon />, p: "left", pr: "right" },
+  },
+  {
+    id: "6",
+    type: "mainnode",
+    position: { x: -15, y: 900 },
+    data: { label: "Power Export Grid", value: 150 , top: true, icon: <PowerIcon />},
   },
   // {
   //   id: "3",
@@ -294,6 +304,14 @@ const initialEdges = [
     animated: true,
     type: "step",
   },
+  {
+    id: "edge-17",
+    source: "node-1",
+    target: "6",
+    sourceHandle: "b",
+    animated: true,
+    type: "step",
+  },
 ];
 
 const nodeTypes = {
@@ -329,7 +347,7 @@ function Grid() {
       nodeTypes={nodeTypes}
       fitView
       nodesDraggable={false}
-      maxZoom={1}
+      maxZoom={1.2}
       minZoom={0.6}
     />
   );

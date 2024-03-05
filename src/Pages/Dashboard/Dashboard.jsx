@@ -14,7 +14,7 @@ import GeospaticalIcon from "../../Assets/Icons/GeospaticalIcon";
 const Dashboard = () => {
   const { dashboardData, data, loading } = useContext(DashboardContext);
   const [activeTab, setActiveTab] = useState("Security");
-  const status = dashboardData.grid_status.data || 0;
+  const status = dashboardData.grid_status.data;
 
   const leftGraph = [];
   const rightGraph = [];
@@ -38,11 +38,45 @@ const Dashboard = () => {
           <DashTable data={dashboardData.security_alerts} header="Source IP" />
         );
       case "System Health":
-        return <DashTable data={null} header="Hardware ID" />;
-      case "HoneyPot Detection":
-        return <DashTable data={null} header="Hardware ID" />;
-      default:
-        return <DashTable data={null} header="Source IP" />;
+        return (
+          <DashTable
+            data={[
+              {
+                id: 1,
+                timestamp: "2023-12-17T04:26:04.643+00:00",
+                ip: "INV-93",
+                description: "Inverter 3 Overhaeting ",
+              },
+              {
+                id: 2,
+                timestamp: "2023-12-17T04:26:04.643+00:00",
+                ip: "BAT-1204",
+                description: "Battery Voltage Fluctuation",
+              },
+            ]}
+            header="Hardware ID"
+          />
+        );
+      case "Honeypot Detection":
+        return (
+          <DashTable
+            data={[
+              {
+                id: 1,
+                timestamp: "2023-12-17T04:26:04.643+00:00",
+                ip: "INV-93",
+                description: "Inverter 3 Overhaeting ",
+              },
+              {
+                id: 2,
+                timestamp: "2023-12-17T04:26:04.643+00:00",
+                ip: "BAT-1204",
+                description: "Battery Voltage Fluctuation",
+              },
+            ]}
+            header="SOURCE IP"
+          />
+        );
     }
   };
 
@@ -106,7 +140,9 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p className="grid place-content-center"><GeospaticalIcon/></p>
+          <p className="grid place-content-center">
+            <GeospaticalIcon />
+          </p>
         </CardBody>
       </Card>
 
