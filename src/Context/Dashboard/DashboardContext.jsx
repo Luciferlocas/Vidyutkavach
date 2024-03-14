@@ -6,7 +6,7 @@ import AuthContext from "../Authentication/AuthContext";
 import { io } from "socket.io-client";
 
 const DashboardContext = createContext();
-const socket = io("http://home.anaskhan.site:3453");
+const socket = io("https://api.vidyutkavach.me");
 
 export const DashboardProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
