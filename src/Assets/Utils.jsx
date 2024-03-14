@@ -6,7 +6,7 @@ import HardwareIcon from "../Assets/NavIcons/HardwareIcon";
 import PatchIcon from "../Assets/NavIcons/PatchIcon";
 import SecurityIcon from "../Assets/NavIcons/SecurityIcon";
 
-const url ="https://home.anaskhan.site/api"
+const url ="https://api.vidyutkavach.me"
 
 const NavItems = [
   {
