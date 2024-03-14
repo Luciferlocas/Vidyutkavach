@@ -34,7 +34,7 @@ export const DashboardProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -50,7 +50,7 @@ export const DashboardProvider = ({ children }) => {
         data,
         loading,
         component,
-        status
+        status,
       }}
     >
       {children}
