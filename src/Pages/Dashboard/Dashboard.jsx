@@ -12,9 +12,8 @@ import DashboardContext from "../../Context/Dashboard/DashboardContext";
 import GeospaticalIcon from "../../Assets/Icons/GeospaticalIcon";
 
 const Dashboard = () => {
-  const { dashboardData, data, loading } = useContext(DashboardContext);
+  const { dashboardData, data, loading, status } = useContext(DashboardContext);
   const [activeTab, setActiveTab] = useState("Security");
-  const status = dashboardData.grid_status.data;
 
   const leftGraph = [];
   const rightGraph = [];

@@ -11,9 +11,10 @@ const socket = io("http://home.anaskhan.site:3453");
 export const DashboardProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
   const [dashboardData, setdashboardData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [component, setComponent] = useState([]);
+  const [status, setStatus] = useState([]);
 
   useEffect(() => {
     socket.on("component_stream", (data) => {
@@ -22,7 +23,6 @@ export const DashboardProvider = ({ children }) => {
   }, [socket]);
 
   const dashboard = async () => {
-    setLoading(true);
     try {
       const res = await axios.get(`${url}/dashboard/get_dashboard`, {
         headers: { Authorization: `${token}` },
@@ -30,6 +30,7 @@ export const DashboardProvider = ({ children }) => {
       if (res.data.success) {
         setdashboardData(res.data);
         setData(res.data.weekly_data.data);
+        setStatus(res.data.grid_status.data);
       }
     } catch (error) {
       toast.error(error.message);
@@ -48,7 +49,8 @@ export const DashboardProvider = ({ children }) => {
         dashboardData,
         data,
         loading,
-        component
+        component,
+        status
       }}
     >
       {children}
