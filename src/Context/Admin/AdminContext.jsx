@@ -28,8 +28,7 @@ export const AdminProvider = ({ children }) => {
     getRole();
   }, []);
 
-  const create = async (e) => {
-    e.preventDefault();
+  const create = async () => {
     const data = {
       empID: user.empID,
       username: user.username,
