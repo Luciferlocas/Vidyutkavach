@@ -7,9 +7,9 @@ import {
   Divider,
   CardFooter,
 } from "@nextui-org/react";
-import CompMonitorTable from "../../Components/Tables/CompMonitorTable";
 import { useNavigate } from "react-router";
 import DashboardContext from "../../Context/Dashboard/DashboardContext";
+import CompMonitorTable from "../../Components/Tables/CompMonitorTable";
 const ComponentMonitoring = () => {
   const { component } = useContext(DashboardContext);
 
@@ -23,7 +23,12 @@ const ComponentMonitoring = () => {
         <CardHeader className="flex justify-between text-xl">
           <p className="text-md">Power Generation Components</p>
           <div className="text-md flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div> Live
+            <div
+              className={`w-2 h-2 ${
+                component.length ? "bg-green-500" : "bg-red-500"
+              } rounded-full`}
+            ></div>{" "}
+            {component.length ? "Live" : "Offline"}
           </div>
         </CardHeader>
         <Divider />
@@ -42,12 +47,17 @@ const ComponentMonitoring = () => {
         <CardHeader className="flex justify-between text-xl">
           <p className="text-md">Power Consumption Components</p>
           <div className="text-md flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div> Live
+            <div
+              className={`w-2 h-2 ${
+                component.length ? "bg-green-500" : "bg-red-500"
+              } rounded-full`}
+            ></div>{" "}
+            {component.length ? "Live" : "Offline"}
           </div>
         </CardHeader>
         <Divider />
         <CardBody>
-          <CompMonitorTable data={component} prop="output" unit="kW"/>
+          <CompMonitorTable data={component} prop="output" unit="kW" />
         </CardBody>
         <CardFooter className="flex justify-end">
           <Button className="text-xs font-medium" onClick={handleNavigate}>
@@ -60,34 +70,20 @@ const ComponentMonitoring = () => {
         <CardHeader className="flex justify-between text-xl">
           <p className="text-md">Energy Storage</p>
           <div className="text-md flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div> Live
+            <div
+              className={`w-2 h-2 ${
+                component.length ? "bg-green-500" : "bg-red-500"
+              } rounded-full`}
+            ></div>{" "}
+            {component.length ? "Live" : "Offline"}
           </div>
         </CardHeader>
         <Divider />
         <CardBody>
           <CompMonitorTable
-            data={[
-              {
-                name: "Battery Storage 1",
-                status: "active",
-                value: "78%",
-                type: "storage",
-              },
-              {
-                name: "Battery Storage 2",
-                status: "inactive",
-                value: "45%",
-                type: "storage",
-              },
-              {
-                name: "Battery Storage 3",
-                status: "inactive",
-                value: "0%",
-                type: "storage",
-              },
-            ]}
+            data={component}
             prop="storage"
-            unit={null}
+            unit="kW"
             color="g"
           />
         </CardBody>

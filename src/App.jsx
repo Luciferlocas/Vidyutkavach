@@ -23,6 +23,7 @@ import NGiNX from "./Pages/SecurityCenter/NGiNX";
 import SecurityAlerts from "./Pages/SecurityCenter/SecurityAlerts";
 import HoneypotAlerts from "./Pages/SecurityCenter/HoneypotAlerts";
 import Generation from "./Pages/ComponentMonitoring/Generation";
+import Adminpanel from "./Pages/Admin/Adminpanel";
 
 const App = () => {
   const { theme } = useContext(AuthContext);
@@ -33,6 +34,7 @@ const App = () => {
           <Route exact path="/" element={<Login />} />
           <Route exact path="/verify" element={<Verify />} />
           <Route element={<MainLayout />}>
+            <Route path="/adminpanel" element={<Adminpanel />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/gridmonitoring" element={<GridMonitoring />} />
             <Route

@@ -14,7 +14,7 @@ function MiniNode({ data }) {
       >
         <CardBody className="flex flex-col text-center min-w-40">
           <h1>{data.label}</h1>
-          <p>{data.value} kWh</p>
+          <p>{data.value} kW</p>
         </CardBody>
       </Card>
     </div>

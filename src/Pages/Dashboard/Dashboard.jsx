@@ -30,54 +30,54 @@ const Dashboard = () => {
     }
   });
 
-  const renderTable = () => {
-    switch (activeTab) {
-      case "Security":
-        return (
-          <DashTable data={dashboardData.security_alerts} header="Source IP" />
-        );
-      case "System Health":
-        return (
-          <DashTable
-            data={[
-              {
-                id: 1,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "INV-93",
-                description: "Inverter 3 Overhaeting ",
-              },
-              {
-                id: 2,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "BAT-1204",
-                description: "Battery Voltage Fluctuation",
-              },
-            ]}
-            header="Hardware ID"
-          />
-        );
-      case "Honeypot Detection":
-        return (
-          <DashTable
-            data={[
-              {
-                id: 1,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "INV-93",
-                description: "Inverter 3 Overhaeting ",
-              },
-              {
-                id: 2,
-                timestamp: "2023-12-17T04:26:04.643+00:00",
-                ip: "BAT-1204",
-                description: "Battery Voltage Fluctuation",
-              },
-            ]}
-            header="SOURCE IP"
-          />
-        );
-    }
-  };
+  // const renderTable = () => {
+  //   switch (activeTab) {
+  //     case "Security":
+  //       return (
+  //         <DashTable data={dashboardData.security_alerts} header="Source IP" />
+  //       );
+  //     case "System Health":
+  //       return (
+  //         <DashTable
+  //           data={[
+  //             {
+  //               id: 1,
+  //               timestamp: "2023-12-17T04:26:04.643+00:00",
+  //               ip: "INV-93",
+  //               description: "Inverter 3 Overhaeting ",
+  //             },
+  //             {
+  //               id: 2,
+  //               timestamp: "2023-12-17T04:26:04.643+00:00",
+  //               ip: "BAT-1204",
+  //               description: "Battery Voltage Fluctuation",
+  //             },
+  //           ]}
+  //           header="Hardware ID"
+  //         />
+  //       );
+  //     case "Honeypot Detection":
+  //       return (
+  //         <DashTable
+  //           data={[
+  //             {
+  //               id: 1,
+  //               timestamp: "2023-12-17T04:26:04.643+00:00",
+  //               ip: "INV-93",
+  //               description: "Inverter 3 Overhaeting ",
+  //             },
+  //             {
+  //               id: 2,
+  //               timestamp: "2023-12-17T04:26:04.643+00:00",
+  //               ip: "BAT-1204",
+  //               description: "Battery Voltage Fluctuation",
+  //             },
+  //           ]}
+  //           header="SOURCE IP"
+  //         />
+  //       );
+  //   }
+  // };
 
   return loading ? (
     <div className="min-h-screen lg:pl-[16.5rem] grid place-content-center">
@@ -96,13 +96,13 @@ const Dashboard = () => {
           </p>
         </CardBody>
       </Card>
-      <Card className="md:col-span-4 col-span-6">
+      <Card className="md:col-span-5 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">Grid Status</p>
         </CardHeader>
         <Divider />
         <CardBody>
-          <div className="sm:flex sm:flex-row gap-4 flex flex-col justify-center">
+          <div className="sm:flex sm:flex-row flex flex-col justify-around">
             <div className="flex flex-col">
               <p className="sm:text-[1.8em] text-[1em]">
                 {status.find((item) => item._id === "output").totalValue} KW
@@ -115,6 +115,13 @@ const Dashboard = () => {
                 {status.find((item) => item._id === "input").totalValue} KW
               </p>
               <p className="text-small text-default-500">Consumption</p>
+            </div>
+            <div className="sm:h-[4em] sm:w-[0.5px] h-[0.5px] w-[4em] bg-zinc-200 dark:bg-zinc-700"></div>
+            <div className="flex flex-col">
+              <p className="sm:text-[1.8em] text-[1em]">
+                {(status.find((item) => item._id === "output").totalValue) - (status.find((item) => item._id === "input").totalValue)} KW
+              </p>
+              <p className="text-small text-default-500">Production</p>
             </div>
           </div>
         </CardBody>
@@ -133,7 +140,7 @@ const Dashboard = () => {
           </p>
         </CardBody>
       </Card>
-      <Card className="md:col-span-3 col-span-7">
+      <Card className="md:col-span-2 col-span-7">
         <CardHeader className="flex gap-3">
           <p className="text-md">Geospatial Status</p>
         </CardHeader>
@@ -164,7 +171,7 @@ const Dashboard = () => {
         </CardBody>
       </Card>
 
-      <div className="grid gap-4 md:col-span-4 col-span-8">
+      {/* <div className="grid gap-4 md:col-span-4 col-span-8">
         <Card className="col-span-2">
           <CardHeader className="flex gap-3">
             <p className="text-md">IDS</p>
@@ -266,7 +273,7 @@ const Dashboard = () => {
           </div>
           <div className="overflow-y-scroll max-h-[12rem]">{renderTable()}</div>
         </CardBody>
-      </Card>
+      </Card> */}
 
       <Card className="md:col-span-3 col-span-6">
         <CardHeader className="flex gap-3">

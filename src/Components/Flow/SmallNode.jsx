@@ -7,7 +7,7 @@ import {
 function SmallNode({ data, isConnectable }) {
   return (
     <div className="text-updater-node">
-      <Handle type="target" position={data.pr} />
+      <Handle type="target" position={data.pr} id="c"/>
       <Card className="max-w-[400px]">
         <CardBody>
           {data.icon}
@@ -16,7 +16,6 @@ function SmallNode({ data, isConnectable }) {
       <Handle
         type="source"
         position={data.p}
-        id="b"
         isConnectable={isConnectable}
       />
     </div>

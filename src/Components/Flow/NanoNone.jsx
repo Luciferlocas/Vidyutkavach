@@ -25,7 +25,7 @@ const NanoNode = ({ data }) => {
             <UtilityGrid />
             <div className="flex flex-col">
               <h1>{data.label}</h1>
-              <p>{data.value} kWh</p>
+              <p>{data.value} kW</p>
             </div>
           </div>
         </CardBody>

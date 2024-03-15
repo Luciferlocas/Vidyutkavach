@@ -6,7 +6,7 @@ import AuthContext from "../Authentication/AuthContext";
 import { io } from "socket.io-client";
 
 const DashboardContext = createContext();
-const socket = io("http://home.anaskhan.site:3453");
+const socket = io(url);
 
 export const DashboardProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
@@ -19,6 +19,15 @@ export const DashboardProvider = ({ children }) => {
   useEffect(() => {
     socket.on("component_stream", (data) => {
       setComponent(data);
+    });
+    socket.on("dashboard", (data) => {
+      console.log("here it is", data);
+      setdashboardData(data.data);
+      setData(data.data.weekly_data.data);
+      setStatus(data.data.grid_status.data);
+    });
+    socket.on("grid_monitor", (data) => {
+      console.log(data);
     });
   }, [socket]);
 

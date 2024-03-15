@@ -4,18 +4,18 @@ import App from "./App";
 import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { AuthProvider } from "./Context/Authentication/AuthContext";
-import { PatchProvider } from "./Context/PatchManagement/PatchContext";
 import { DashboardProvider } from "./Context/Dashboard/DashboardContext";
+import { AdminProvider } from "./Context/Admin/AdminContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     <NextUIProvider>
       <AuthProvider>
-        <DashboardProvider>
-          <PatchProvider>
+        <AdminProvider>
+          <DashboardProvider>
             <App />
-          </PatchProvider>
-        </DashboardProvider>
+          </DashboardProvider>
+        </AdminProvider>
       </AuthProvider>
     </NextUIProvider>
   </>
