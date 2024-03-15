@@ -6,14 +6,13 @@ import {
   Divider,
   Spinner,
 } from "@nextui-org/react";
-import DashTable from "../../Components/Tables/DashTable";
 import DashChart from "../../Components/Graphs/DashChart";
 import DashboardContext from "../../Context/Dashboard/DashboardContext";
 import GeospaticalIcon from "../../Assets/Icons/GeospaticalIcon";
 
 const Dashboard = () => {
   const { dashboardData, data, loading, status } = useContext(DashboardContext);
-  const [activeTab, setActiveTab] = useState("Security");
+  // const [activeTab, setActiveTab] = useState("Security");
 
   const leftGraph = [];
   const rightGraph = [];
