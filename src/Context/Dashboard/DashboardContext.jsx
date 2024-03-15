@@ -17,17 +17,17 @@ export const DashboardProvider = ({ children }) => {
   const [status, setStatus] = useState([]);
 
   useEffect(() => {
-    socket.on("component_stream", (data) => {
-      setComponent(data);
-    });
-    socket.on("dashboard", (data) => {
-      console.log("here it is", data);
-      setdashboardData(data.data);
-      setData(data.data.weekly_data.data);
-      setStatus(data.data.grid_status.data);
-    });
+    // socket.on("component_stream", (data) => {
+    //   setComponent(data);
+    // });
+    // socket.on("dashboard", (data) => {
+    //   console.log("here it is", data);
+    //   setdashboardData(data.data);
+    //   setData(data.data.weekly_data.data);
+    //   setStatus(data.data.grid_status.data);
+    // });
     socket.on("grid_monitor", (data) => {
-      console.log(data);
+      setComponent(data);
     });
   }, [socket]);
 

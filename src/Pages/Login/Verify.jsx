@@ -23,7 +23,7 @@ const Verify = () => {
       }
     }
   };
-  const handleKeyUp = (i, event) => {
+  const handleKeyDown = (i, event) => {
     const key = event.key.toLowerCase();
     if (key === "backspace") {
       const newOTP = [...otp];
@@ -73,7 +73,7 @@ const Verify = () => {
                   maxLength="1"
                   value={value}
                   onChange={(e) => handleInputChange(i, e)}
-                  onKeyUp={(e) => handleKeyUp(i, e)}
+                  onKeyDown={(e) => handleKeyDown(i, e)}
                 />
               ))}
             </div>

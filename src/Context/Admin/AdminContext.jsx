@@ -10,6 +10,7 @@ export const AdminProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
   const [user, setUser] = useState([]);
   const [roles, setRoles] = useState([]);
+  const [image, setImage] = useState("");
 
   const getRole = async () => {
     try {
@@ -43,17 +44,16 @@ export const AdminProvider = ({ children }) => {
           headers: { Authorization: `${token}` },
         })
         .then((res) => {
+          setImage(res.data.data)
           toast.success("User added successfully");
         });
     } catch (error) {
       toast.error(error.message);
-    } finally {
-      setUser([]);
     }
   };
 
   return (
-    <AdminContext.Provider value={{ user, setUser, roles, create }}>
+    <AdminContext.Provider value={{ user, setUser, roles, create, image }}>
       {children}
     </AdminContext.Provider>
   );

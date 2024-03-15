@@ -17,8 +17,8 @@ const GridMonitoring = () => {
       <Spinner />
     </div>
   ) : (
-    <div className="lg:pl-[16.5rem] px-4 lg:pr-[1rem] h-screen">
-      <div className="my-[1em] grid grid-cols-12 gap-4">
+    <div className="lg:pl-[16.5rem] px-4 lg:pr-[1rem] h-screen my-[1em]">
+      <div className="grid grid-cols-12 gap-4">
         <Card className="md:col-span-2 col-span-6">
           <CardHeader className="flex gap-3">
             <p className="text-md">Grid Status</p>
