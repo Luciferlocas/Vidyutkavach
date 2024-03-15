@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import AuthContext from "../../Context/Authentication/AuthContext";
 import { Divider, Input, Button } from "@nextui-org/react";
@@ -9,12 +9,34 @@ import gif from "../../Assets/gif.gif";
 const Verify = () => {
   const { loading, verify } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [otp, setOTP] = useState(["", "", "", "", "", ""]);
+  const inref = useRef([]);
+
+  const handleInputChange = (i, e) => {
+    const { value } = e.target;
+    if (!isNaN(value) && value.length <= 1) {
+      const newOTP = [...otp];
+      newOTP[i] = value;
+      setOTP(newOTP);
+      if (i < 5 && value !== "") {
+        inref.current[i + 1].focus();
+      }
+    }
+  };
+  const handleKeyUp = (i, event) => {
+    const key = event.key.toLowerCase();
+    if (key === "backspace") {
+      const newOTP = [...otp];
+      newOTP[i] = "";
+      setOTP(newOTP);
+      if (i > 0) inref.current[i - 1].focus();
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const otp = e.target.otp.value;
     try {
-      await verify(otp);
+      await verify(parseInt(otp.join('')));
       navigate("/dashboard");
     } catch (error) {
       toast.error(error.message);
@@ -36,17 +58,25 @@ const Verify = () => {
           onSubmit={handleSubmit}
         >
           <span className="text-[1.8rem] font-bold underline">Verify</span>
-          <div className="font-bold">
-            <Input
-              className="sm:min-w-96 min-w-60"
-              type="text"
-              id="otp"
-              name="otp"
-              isRequired
-              placeholder="Enter the OTP"
-              label="OTP"
-              labelPlacement="outside"
-            />
+          <div class="flex flex-col gap-4">
+            <label className="font-bold after:content-['*'] after:text-red-600 after:ml-1">
+              Enter OTP
+            </label>
+            <div className="flex gap-4">
+              {otp.map((value, i) => (
+                <input
+                  key={i}
+                  ref={(e) => (inref.current[i] = e)}
+                  className="w-[2.5em] aspect-square rounded-md bg-zinc-800 text-center hover:bg-zinc-700"
+                  type="text"
+                  inputMode="numeric"
+                  maxLength="1"
+                  value={value}
+                  onChange={(e) => handleInputChange(i, e)}
+                  onKeyUp={(e) => handleKeyUp(i, e)}
+                />
+              ))}
+            </div>
           </div>
           <Button
             isLoading={loading}
