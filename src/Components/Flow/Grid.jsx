@@ -11,7 +11,6 @@ import SmallNode from "./SmallNode";
 import SolarIcon from "../../Assets/Grid/SolarIcon";
 import WindIcon from "../../Assets/Grid/WindIcon";
 import BioIcon from "../../Assets/Grid/BioIcon";
-import ThermalIcon from "../../Assets/Grid/ThermalIcon";
 import BatteryIcon from "../../Assets/Grid/BatteryIcon";
 import UtilityGrid from "../../Assets/Grid/UtilityGrid";
 import PowerIcon from "../../Assets/Grid/PowerIcon";
