@@ -7,7 +7,7 @@ import AuthContext from "../Authentication/AuthContext";
 const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
-  const socket = new WebSocket("ws://ws.anaskhan.site:5000/ws");
+  // const socket = new WebSocket("ws://ws.anaskhan.site:5000/ws");
   const res = {
     success: true,
     utility_status: {
