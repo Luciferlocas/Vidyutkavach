@@ -69,7 +69,7 @@ const App = () => {
 const MainLayout = ({ children }) => {
   const token = Cookies.get("token");
 
-  return token ? (
+  return !token ? (
     <>
       <NavbarTop />
       <div className="flex">
