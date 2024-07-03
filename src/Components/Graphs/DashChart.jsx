@@ -26,6 +26,7 @@ ChartJS.register(
 const DashChart = ({ data }) => {
   const { theme } = useContext(AuthContext);
   const label = new Set();
+  const w = window.innerWidth;
 
   data.forEach(item => {
     item.metrics.forEach(metric => {
@@ -68,7 +69,7 @@ const DashChart = ({ data }) => {
     responsive: true,
     plugins: {
       legend: {
-        display: true,
+        display: (w || 1536) > 786 ? true : false,
         position: "top",
       },
     },
@@ -77,18 +78,34 @@ const DashChart = ({ data }) => {
         title: {
           display: true,
           text: `-----Date-----`,
+          font: {
+            size: (w || 1536) > 786 ? 12 : 8,
+          },
+        },
+        ticks: {
+          font: {
+            size: (innerWidth || 1536) > 786 ? 12 : 8,
+          },
         },
       },
       y: {
         title: {
           display: true,
           text: `-----Power-----`,
+          font: {
+            size: (w || 1536) > 786 ? 12 : 8,
+          },
+        },
+        ticks: {
+          font: {
+            size: (innerWidth || 1536) > 786 ? 12 : 8,
+          },
         },
       },
     },
   };
 
-  return <Line options={options} data={chartData} />;
+  return <Line className="min-h-52" options={options} data={chartData} />;
 };
 
 export default DashChart;

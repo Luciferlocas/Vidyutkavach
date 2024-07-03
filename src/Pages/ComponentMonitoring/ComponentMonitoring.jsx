@@ -13,7 +13,7 @@ import CompMonitorTable from "../../Components/Tables/CompMonitorTable";
 
 const ComponentMonitoring = () => {
   const { component, stats, turnOn } = useContext(DashboardContext);
-  
+
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("generationdetail");

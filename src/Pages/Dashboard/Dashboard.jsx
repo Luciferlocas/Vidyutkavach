@@ -101,7 +101,7 @@ const Dashboard = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <div className="sm:flex sm:flex-row flex flex-col justify-around">
+          <div className="sm:flex sm:flex-row flex flex-col justify-around text-center items-center">
             <div className="flex flex-col">
               <p className="sm:text-[1.8em] text-[1em]">
                 {status.find((item) => item._id === "input").totalValue} KW

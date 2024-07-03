@@ -19,9 +19,9 @@ const Adminpanel = () => {
   };
 
   return (
-    <div className="grid place-content-center lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em] h-[calc(100vh-6em)]">
+    <div className="grid place-content-center lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em] h-[calc(100vh-6em)] w-12/12">
       {image ? (
-        <Card className="w-[calc(25vw)] dark:bg-gradient-to-tl from-zinc-800 to-zinc-950">
+        <Card className="sm:w-96 w-[calc(75vw)] dark:bg-gradient-to-tl from-zinc-800 to-zinc-950">
           <CardHeader className="flex gap-3">
             <p className="text-lg font-bold">QR Code</p>
           </CardHeader>
@@ -31,7 +31,7 @@ const Adminpanel = () => {
           </CardBody>
         </Card>
       ) : (
-        <Card className="w-[calc(25vw)] dark:bg-gradient-to-tl from-zinc-800 to-zinc-950">
+        <Card className="sm:w-96 w-[calc(75vw)] dark:bg-gradient-to-tl from-zinc-800 to-zinc-950">
           <CardHeader className="flex gap-3">
             <p className="text-lg font-bold">Create User</p>
           </CardHeader>

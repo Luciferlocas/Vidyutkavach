@@ -45,7 +45,7 @@ const NavbarTop = () => {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="lg:hidden"
         />
-        <NavbarBrand>
+        <NavbarBrand className="hidden sm:flex">
           <Logo w={220} h={40} />
         </NavbarBrand>
       </NavbarContent>

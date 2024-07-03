@@ -5,7 +5,7 @@ import { Button } from '@nextui-org/react';
 export const Patch = ({patchData}) => {
     // const {patchData} = useContext(PatchContext)
     if (!patchData || !patchData.length) return <p className="text-center">No record found.</p>;
-    console.log(patchData)
+
     return (
         <>
       <table className="w-full ">
@@ -35,7 +35,7 @@ export const Patch = ({patchData}) => {
 export const UpdateTable = ({updateData}) => {
     // const {updateData} = useContext(PatchContext)
     if (!updateData|| !updateData.length) return <p className="text-center">No record found.</p>;
-    console.log(updateData)
+    
     return (
         <>
       <table className="w-full ">
@@ -63,7 +63,7 @@ export const UpdateTable = ({updateData}) => {
 export const PendingTable = ({pendingData}) => {
     // const {pendingData} = useContext(PatchContext)
     if (!pendingData|| !pendingData.length) return <p className="text-center">No record found.</p>;
-    console.log(pendingData)
+    
     return (
         <>
       <table className="w-full ">
@@ -90,7 +90,7 @@ export const PendingTable = ({pendingData}) => {
 export const PatchAlert = ({alertData}) => {
   // const {alertData} = useContext(PatchContext)
   if (!alertData|| !alertData.length) return <p className="text-center">No record found.</p>;
-  console.log(alertData)
+  
   return (
       <>
       
