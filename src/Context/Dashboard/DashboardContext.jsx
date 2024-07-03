@@ -302,35 +302,35 @@ export const DashboardProvider = ({ children }) => {
   //   }
   // };
 
-  useEffect(() => {
-    const setUpEventListener = () => {
-      if (stats === 1) {
-        const handleMessage = (e) => {
-          const newData = JSON.parse(e.data);
-          setComponent((prevComponents) => {
-            const existingIndex = prevComponents.findIndex(
-              (item) => item.componentID === newData.componentID
-            );
-            if (existingIndex !== -1) {
-              const updatedComponents = [...prevComponents];
-              updatedComponents[existingIndex] = newData;
-              return updatedComponents;
-            } else {
-              return [...prevComponents, newData];
-            }
-          });
-        };
-        socket.onmessage = handleMessage;
-      } else {
-        socket.onmessage = null;
-      }
-    };
-    setUpEventListener();
+  // useEffect(() => {
+  //   const setUpEventListener = () => {
+  //     if (stats === 1) {
+  //       const handleMessage = (e) => {
+  //         const newData = JSON.parse(e.data);
+  //         setComponent((prevComponents) => {
+  //           const existingIndex = prevComponents.findIndex(
+  //             (item) => item.componentID === newData.componentID
+  //           );
+  //           if (existingIndex !== -1) {
+  //             const updatedComponents = [...prevComponents];
+  //             updatedComponents[existingIndex] = newData;
+  //             return updatedComponents;
+  //           } else {
+  //             return [...prevComponents, newData];
+  //           }
+  //         });
+  //       };
+  //       socket.onmessage = handleMessage;
+  //     } else {
+  //       socket.onmessage = null;
+  //     }
+  //   };
+  //   setUpEventListener();
 
-    return () => {
-      socket.onmessage = null;
-    };
-  }, [stats]);
+  //   return () => {
+  //     socket.onmessage = null;
+  //   };
+  // }, [stats]);
 
   const dashboard = async () => {
     try {
