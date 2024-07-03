@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter,
   Outlet,
   Route,
   Routes,
-  useNavigate,
   Navigate,
 } from "react-router-dom";
 import Login from "./Pages/Login/Login";
@@ -29,7 +28,7 @@ const App = () => {
   const { theme } = useContext(AuthContext);
   return (
     <BrowserRouter>
-      <main className={`${theme ? "dark" : ""} text-foreground bg-background`}>
+      <main className={`${theme ? "dark" : ""} text-foreground bg-background min-h-screen`}>
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/verify" element={<Verify />} />
@@ -69,12 +68,6 @@ const App = () => {
 
 const MainLayout = ({ children }) => {
   const token = Cookies.get("token");
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!token) {
-      navigate("/");
-    }
-  }, []);
 
   return token ? (
     <>

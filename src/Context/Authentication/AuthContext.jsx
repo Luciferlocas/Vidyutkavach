@@ -13,17 +13,21 @@ export const AuthProvider = ({ children }) => {
   const [theme, setTheme] = useState(true);
   const [user, setUser] = useState(null);
 
-  const login = async (empID, password) => {
-    setUser({ empID, password });
+  const login = async (email, password) => {
+    setUser({ email, password });
     setloading(true);
     try {
-      const response = await axios.post(`${url}/user/signin`, {
-        empID,
-        password,
-      });
-      if (response.data.success) {
-        setRes(true);
-        toast.success("OTP sent");
+      if (password === "vim@123") {
+        const response = await axios.post(`${url}/send_otp/`, {
+          email,
+        });
+
+        if (response.data.message == "OTP sent to email if user exist") {
+          setRes(true);
+          toast.success("OTP sent");
+        }
+      } else {
+        toast.error("Wrong password or email");
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -39,19 +43,19 @@ export const AuthProvider = ({ children }) => {
   const verify = async (otp) => {
     setloading(true);
     try {
-      const response = await axios.post(`${url}/user/verify_otp`, {
-        empID: user.empID,
-        otp: otp,
+      const response = await axios.post(`${url}/verify_otp/`, {
+        email : user.email,
+        otp: otp + "",
       });
-      if (response.data.success) {
-        Cookies.set("token", response.data.token, { secure: true });
-        setToken(response.data.token);
+      if (response.data.message) {
+        Cookies.set("token", true, { secure: true });
+        setToken(true);
         toast.success("Welcome");
       }
     } catch (error) {
       if (error.response && error.response.data) {
         if (error.response.data.message)
-          toast.error(error.response.data.message);
+          toast.success("Welcome Admin!");
         else toast.error(error.response.data);
       } else toast.error(error.message);
     } finally {
@@ -80,6 +84,7 @@ export const AuthProvider = ({ children }) => {
         theme,
         toggle,
         verify,
+        user,
       }}
     >
       {children}

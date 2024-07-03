@@ -83,7 +83,7 @@ const Dashboard = () => {
       <Spinner />
     </div>
   ) : (
-    <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] min-h-screen px-4 lg:pr-[1rem] my-[1em]">
+    <div className="grid grid-cols-12 gap-[1em] lg:pl-[16.5rem] px-4 lg:pr-[1rem] my-[1em]">
       <Card className="md:col-span-3 col-span-6">
         <CardHeader className="flex gap-3">
           <p className="text-md">Grid Status</p>
@@ -104,23 +104,23 @@ const Dashboard = () => {
           <div className="sm:flex sm:flex-row flex flex-col justify-around">
             <div className="flex flex-col">
               <p className="sm:text-[1.8em] text-[1em]">
-                {status.find((item) => item._id === "output").totalValue} KW
-              </p>
-              <p className="text-small text-default-500">Production</p>
-            </div>
-            <div className="sm:h-[4em] sm:w-[0.5px] h-[0.5px] w-[4em] bg-zinc-200 dark:bg-zinc-700"></div>
-            <div className="flex flex-col">
-              <p className="sm:text-[1.8em] text-[1em]">
                 {status.find((item) => item._id === "input").totalValue} KW
               </p>
-              <p className="text-small text-default-500">Consumption</p>
+              <p className="text-small text-default-500">Production</p>
             </div>
             <div className="sm:h-[4em] sm:w-[0.5px] h-[0.5px] w-[4em] bg-zinc-200 dark:bg-zinc-700"></div>
             <div className="flex flex-col">
               <p className="sm:text-[1.8em] text-[1em]">
-                {(status.find((item) => item._id === "output").totalValue) - (status.find((item) => item._id === "input").totalValue)} KW
+                {-(status.find((item) => item._id === "output").totalValue) + (status.find((item) => item._id === "input").totalValue)} KW
               </p>
-              <p className="text-small text-default-500">Production</p>
+              <p className="text-small text-default-500">Output</p>
+            </div>
+            <div className="sm:h-[4em] sm:w-[0.5px] h-[0.5px] w-[4em] bg-zinc-200 dark:bg-zinc-700"></div>
+            <div className="flex flex-col">
+              <p className="sm:text-[1.8em] text-[1em]">
+                {status.find((item) => item._id === "output").totalValue} KW
+              </p>
+              <p className="text-small text-default-500">Input</p>
             </div>
           </div>
         </CardBody>
@@ -135,7 +135,7 @@ const Dashboard = () => {
             {Math.ceil(
               status.find((item) => item._id === "storage").totalValue
             )}{" "}
-            KW
+            %
           </p>
         </CardBody>
       </Card>

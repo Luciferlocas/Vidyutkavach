@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 import AuthContext from "../../Context/Authentication/AuthContext";
 import { Divider, Input, Button } from "@nextui-org/react";
@@ -7,10 +7,14 @@ import logo from "../../Assets/logo.svg";
 import gif from "../../Assets/gif.gif";
 
 const Verify = () => {
-  const { loading, verify } = useContext(AuthContext);
+  const { loading, verify, token, user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [otp, setOTP] = useState(["", "", "", "", "", ""]);
+  const [otp, setOTP] = useState(["", "", "", "", ""]);
   const inref = useRef([]);
+
+  useEffect(() => {
+    if (!user) navigate("/");
+  }, []);
 
   const handleInputChange = (i, e) => {
     const { value } = e.target;
@@ -18,7 +22,7 @@ const Verify = () => {
       const newOTP = [...otp];
       newOTP[i] = value;
       setOTP(newOTP);
-      if (i < 5 && value !== "") {
+      if (i < 4 && value !== "") {
         inref.current[i + 1].focus();
       }
     }
@@ -36,7 +40,7 @@ const Verify = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await verify(parseInt(otp.join('')));
+      await verify(parseInt(otp.join("")));
       navigate("/dashboard");
     } catch (error) {
       toast.error(error.message);

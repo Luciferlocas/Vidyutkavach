@@ -5,7 +5,7 @@ import ComponentMonitorIcon from "../Assets/NavIcons/ComponentMonitorIcon";
 import PatchIcon from "../Assets/NavIcons/PatchIcon";
 import AdminIcon from "./NavIcons/AdminIcon";
 
-const url = "https://api.vidyutkavach.me/api";
+const url = "https://api.anaskhan.site/api";
 
 const NavItems = [
   {

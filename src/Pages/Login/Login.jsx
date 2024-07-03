@@ -11,14 +11,14 @@ const Login = () => {
   const { login, loading, res } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(username, password);
+    await login(email, password);
   };
 
   useEffect(() => {
@@ -47,11 +47,11 @@ const Login = () => {
               type="text"
               id="username"
               name="username"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               isRequired
-              placeholder="Enter your username"
-              label="Username"
+              placeholder="Enter your email"
+              label="Email"
               labelPlacement="outside"
             />
             <br />

@@ -12,22 +12,22 @@ export const AdminProvider = ({ children }) => {
   const [roles, setRoles] = useState([]);
   const [image, setImage] = useState("");
 
-  const getRole = async () => {
-    try {
-      const res = await axios.get(`${url}/admin/get_roles`, {
-        headers: { Authorization: `${token}` },
-      });
-      if (res.data.success) {
-        setRoles(res.data.data);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
+  // const getRole = async () => {
+  //   try {
+  //     const res = await axios.get(`${url}/admin/get_roles`, {
+  //       headers: { Authorization: `${token}` },
+  //     });
+  //     if (res.data.success) {
+  //       setRoles(res.data.data);
+  //     }
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    getRole();
-  }, []);
+  // useEffect(() => {
+  //   getRole();
+  // }, []);
 
   const create = async () => {
     const data = {
